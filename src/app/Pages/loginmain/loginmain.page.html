@@ -1,0 +1,96 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="login"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons (click)="skip()" slot="end" style="margin-right: 21px">
+      Skip
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <img src="/assets/undraw_login_re_4vu2 (1).svg" alt="" />
+    <h1 style="color: #990000">Login</h1>
+    <h2 style="font-weight: 500">
+      Enter your phone no. you will receive 6 digit code for phone number
+      verification.
+    </h2>
+    <ion-grid fixed class="ion-no-padding">
+      <ion-row>
+        <ion-col size="3" style="padding-right: 11px">
+          <input
+            type="number"
+            name=""
+            id=""
+            disabled
+            placeholder="+91"
+            style="text-align: center"
+          />
+          <!-- <mat-form-field id="code" class="example-full-width" appearance="outline">
+            <mat-label>+91</mat-label>
+            <input disabled matInput >
+          </mat-form-field> -->
+        </ion-col>
+        <ion-col size="9">
+          <input
+            type="number"
+            name=""
+            id=""
+            placeholder="Enter your mobile no,"
+            [(ngModel)]="mobile"
+          />
+          <!-- <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Enter Phone Number</mat-label>
+            <input [disabled]="click" matInput placeholder="Eg. 95XXXXXX41" [(ngModel)]="mobile">
+          </mat-form-field> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <button
+      mat-flat-button
+      [disabled]="click"
+      (click)="send()"
+      style="background: #990000; color: white"
+    >
+      <span *ngIf="!click">Continue</span
+      ><ion-spinner
+        style="color: white"
+        name="crescent"
+        *ngIf="click"
+      ></ion-spinner>
+    </button>
+  </div>
+
+  <!-- <div class="background">
+   <div style="padding:40% 0 23% ">
+    <img src="/assets/logo.png" alt="" srcset="" class="center">
+   </div>
+   <div class="padding">
+    <button mat-flat-button id="main-btn" [routerLink]="['/loginmain']" routerLinkActive="router-link-active" >Log In with Mobile</button>
+    <ion-grid class="ion-no-padding">
+      <ion-row >
+        <ion-col size="3">
+          <mat-divider></mat-divider>
+        </ion-col>
+        <ion-col size="6" style="display: flex;justify-content: center;
+        align-items: center;">
+          <span style="color: white;">or use social sign up</span>
+        </ion-col>
+        <ion-col size="3">
+          <mat-divider></mat-divider>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <button mat-flat-button id="social-btn">
+      <img src="/assets/icon/google logo.png" alt="" srcset="">
+      Continue With Google</button>
+    <button style="margin-top: 10px;" mat-flat-button id="social-btn">
+      <img src="/assets/facebook logo.png" alt="" srcset="">
+      Continue With Facebook</button>
+  
+      <h3>Already have account? <span id="span" [routerLink]="['/register']" routerLinkActive="router-link-active" >Register</span></h3>
+   </div>
+  </div> -->
+</ion-content>

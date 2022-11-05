@@ -1,0 +1,18 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!htmlData" style="text-align: center; margin-top: 40%">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <div
+    style="padding: 0 29px 29px"
+    *ngIf="htmlData"
+    [innerHtml]="htmlData"
+  ></div>
+</ion-content>

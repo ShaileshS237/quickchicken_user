@@ -1,0 +1,127 @@
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+.orderinfo {
+  h1 {
+    font-size: 19px;
+    font-weight: 600;
+  }
+  border: 1px dashed #fdab08;
+  border-radius: 3px;
+  padding: 12px;
+  background: white;
+  margin: 19px 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  //   height: 100px;
+  width: 400px;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 3px;
+  //   padding: 20px 15px;
+}
+.wrapper .option {
+  width: 100%;
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  border-radius: 3px;
+  cursor: pointer;
+
+  padding: 0 10px;
+  border: 1px solid lightgrey;
+  transition: all 0.3s ease;
+}
+.wrapper .option .dot {
+  height: 20px;
+  width: 20px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  position: relative;
+}
+.wrapper .option .dot::before {
+  position: absolute;
+  content: "";
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  background: #990000;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(1.5);
+  transition: all 0.3s ease;
+}
+input[type="radio"] {
+  display: none;
+}
+
+input[disabled] {
+  background: #f6a41a5c;
+}
+
+#option-1 .option-1 {
+}
+
+#option-1:checked:checked ~ .option-1,
+#option-2:checked:checked ~ .option-2 {
+  padding: 14px;
+  border-color: #990000;
+  background: #990000;
+}
+#option-1:checked:checked ~ .option-1 .dot,
+#option-2:checked:checked ~ .option-2 .dot {
+  background: #fff;
+}
+#option-1:checked:checked ~ .option-1 .dot::before,
+#option-2:checked:checked ~ .option-2 .dot::before {
+  opacity: 1;
+  transform: scale(1);
+}
+.wrapper .option span {
+  font-size: 15px;
+  color: #808080;
+}
+#option-1:checked:checked ~ .option-1 span,
+#option-2:checked:checked ~ .option-2 span {
+  color: #fff;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+button {
+  width: 100%;
+  background: #4f1211;
+  color: white;
+}
+
+button:disabled,
+button[disabled] {
+  background: #4f121112;
+  color: #4f121182;
+}
+
+.payment {
+  background: #990000;
+  color: white;
+  border-radius: 3px;
+}

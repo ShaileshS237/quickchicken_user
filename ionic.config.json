@@ -1,0 +1,10 @@
+{
+  "name": "quickchicken",
+  "integrations": {
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
+  },
+  "type": "angular"
+}

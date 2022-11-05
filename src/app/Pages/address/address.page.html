@@ -1,0 +1,345 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-label>Address Book</ion-label>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="heading">
+    <h4>Saved Address</h4>
+  </div>
+
+  <ion-grid class="ion-padding">
+    <div style="text-align: center; margin-top: 100px" *ngIf="showLoading">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+    <div *ngIf="showError" style="text-align: center; padding-top: 10rem">
+      No Address Found
+    </div>
+    <ion-row *ngFor="let item of addressBook">
+      <ion-col size="1">
+        <img
+          src="assets/newicon/deliveryadress.png"
+          alt=""
+          style="margin-top: 8px"
+        />
+      </ion-col>
+      <ion-col size="11">
+        <h3><b> {{item.name | titlecase}}</b></h3>
+        <p>
+          {{item.address_one | titlecase}}<br />{{item.address_two |
+          titlecase}}, {{item.pincode}}
+          <br />
+          Mobile No : {{item.mobile}}
+        </p>
+        <div>
+          <b>
+            <span class="title" (click)="edit(item)"> EDIT </span>
+            <span
+              class="title"
+              style="margin-left: 23px"
+              (click)="delete(item)"
+            >
+              DELETE
+            </span>
+            <span
+              class="title"
+              style="margin-left: 23px"
+              (click)="makeprimary(item)"
+              *ngIf="item.primary_status!=1"
+            >
+              Make as Primary
+            </span></b
+          >
+        </div>
+        <mat-divider style="margin-top: 15px"></mat-divider>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- <h1
+    style="
+      font-size: 40px;
+      color: #f6a41a;
+      font-weight: 500;
+      padding: 0 20px;
+      margin: 22px 0;
+    "
+  >
+    Address Book
+  </h1> -->
+
+  <!-- <div *ngIf="showLoading">
+    <div
+      style="
+        border-radius: 6px;
+        padding: 16px 18px;
+        background: #e9e9e9;
+        margin: 10px 20px;
+      "
+    >
+      <ion-skeleton-text
+        animated
+        style="width: 60%; height: 22px; border-radius: 0px"
+      >
+      </ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 90%; height: 11px; border-radius: 0px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 30%; height: 11px; border-radius: 0px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 70%; height: 11px; border-radius: 0px"
+      ></ion-skeleton-text>
+      <ion-grid class="ion-no-padding" style="margin-top: 16px">
+        <ion-row>
+          <ion-col size="6" style="display: flex; justify-content: center">
+            <ion-skeleton-text
+              animated
+              style="width: 93%; height: 42px; border-radius: 6px"
+            ></ion-skeleton-text>
+          </ion-col>
+          <ion-col size="6" style="display: flex; justify-content: center">
+            <ion-skeleton-text
+              animated
+              style="width: 93%; height: 42px; border-radius: 6px"
+            ></ion-skeleton-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div
+      style="
+        border-radius: 6px;
+        padding: 16px 18px;
+        background: #e9e9e9;
+        margin: 10px 20px;
+      "
+    >
+      <ion-skeleton-text
+        animated
+        style="width: 60%; height: 22px; border-radius: 0px"
+      >
+      </ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 90%; height: 11px; border-radius: 0px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 30%; height: 11px; border-radius: 0px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 70%; height: 11px; border-radius: 0px"
+      ></ion-skeleton-text>
+      <ion-grid class="ion-no-padding" style="margin-top: 16px">
+        <ion-row>
+          <ion-col size="6" style="display: flex; justify-content: center">
+            <ion-skeleton-text
+              animated
+              style="width: 93%; height: 42px; border-radius: 6px"
+            ></ion-skeleton-text>
+          </ion-col>
+          <ion-col size="6" style="display: flex; justify-content: center">
+            <ion-skeleton-text
+              animated
+              style="width: 93%; height: 42px; border-radius: 6px"
+            ></ion-skeleton-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div
+      style="
+        border-radius: 6px;
+        padding: 16px 18px;
+        background: #e9e9e9;
+        margin: 10px 20px;
+      "
+    >
+      <ion-skeleton-text
+        animated
+        style="width: 60%; height: 22px; border-radius: 0px"
+      >
+      </ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 90%; height: 11px; border-radius: 0px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 30%; height: 11px; border-radius: 0px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 70%; height: 11px; border-radius: 0px"
+      ></ion-skeleton-text>
+      <ion-grid class="ion-no-padding" style="margin-top: 16px">
+        <ion-row>
+          <ion-col size="6" style="display: flex; justify-content: center">
+            <ion-skeleton-text
+              animated
+              style="width: 93%; height: 42px; border-radius: 6px"
+            ></ion-skeleton-text>
+          </ion-col>
+          <ion-col size="6" style="display: flex; justify-content: center">
+            <ion-skeleton-text
+              animated
+              style="width: 93%; height: 42px; border-radius: 6px"
+            ></ion-skeleton-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div
+      style="
+        border-radius: 6px;
+        padding: 16px 18px;
+        background: #e9e9e9;
+        margin: 10px 20px;
+      "
+    >
+      <ion-skeleton-text
+        animated
+        style="width: 60%; height: 22px; border-radius: 0px"
+      >
+      </ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 90%; height: 11px; border-radius: 0px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 30%; height: 11px; border-radius: 0px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 70%; height: 11px; border-radius: 0px"
+      ></ion-skeleton-text>
+      <ion-grid class="ion-no-padding" style="margin-top: 16px">
+        <ion-row>
+          <ion-col size="6" style="display: flex; justify-content: center">
+            <ion-skeleton-text
+              animated
+              style="width: 93%; height: 42px; border-radius: 6px"
+            ></ion-skeleton-text>
+          </ion-col>
+          <ion-col size="6" style="display: flex; justify-content: center">
+            <ion-skeleton-text
+              animated
+              style="width: 93%; height: 42px; border-radius: 6px"
+            ></ion-skeleton-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 100px" *ngIf="addresscount == 0">
+    No Address Found
+  </div>
+
+  <div style="padding: 10px" *ngFor="let item of addressBook">
+    <ion-grid
+      style="
+        background: #ede7e7;
+        border-radius: 6px;
+        padding: 10px;
+        margin: 0 10px;
+      "
+    >
+      <ion-row>
+        <ion-col size="8">
+          <h1 style="font-weight: 600; font-size: 25px">
+            {{item.name | titlecase}}
+          </h1>
+        </ion-col>
+        <ion-col
+          size="4"
+          style="
+            text-align: center;
+            color: #4f1211;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            justify-content: flex-end;
+          "
+          *ngIf="item.primary_status != 0"
+        >
+          Primary
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          {{item.address_one | titlecase}}<br />{{item.address_two |
+          titlecase}}, {{item.pincode}}
+          <br />
+          Mobile No : {{item.mobile}}
+        </ion-col>
+      </ion-row>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <button
+              style="width: 100%; color: WHITE; background: #4f1211"
+              mat-flat-button
+              color="primary"
+            
+            >
+              Edit
+            </button>
+          </ion-col>
+          <ion-col>
+            <button
+              style="width: 100%; color: WHITE; background: #4f1211"
+              mat-flat-button
+              color="primary"
+              (click)="delete(item.id)"
+            >
+              Delete
+            </button>
+          </ion-col>
+          <ion-col *ngIf="item.primary_status == 0">
+            <button
+              style="width: 100%; color: WHITE; background: #4f1211"
+              mat-flat-button
+              color="primary"
+              (click)="makeprimary(item.id)"
+            >
+              Make As Primary
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-grid>
+  </div> -->
+</ion-content>
+
+<ion-footer class="ion-no-border" style="background: whitesmoke">
+  <ion-toolbar>
+    <div *ngIf="!showLoading">
+      <button
+        style="
+          width: 100%;
+          color: white;
+          background: #990000;
+          border-radius: 6px;
+        "
+        mat-stroked-button
+        color="primary"
+        [routerLink]="['/address/addnewaddress', addresscount]"
+        routerLinkActive="router-link-active"
+      >
+        Add New Address
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,27 @@
+img {
+  max-width: 80%;
+}
+.pull-left {
+  float: left;
+}
+
+.icon-headernav {
+  color: #ff6200;
+  font-size: 16px;
+}
+
+.button-header {
+  cursor: pointer;
+}
+
+.notification-dot {
+  // height: 6px;
+  // width: 6px;
+  background-color: #525199;
+  // border-radius: 50%;
+  // border: 1px solid white;
+  display: inline-block;
+  position: relative;
+  top: -8px;
+  left: -8px;
+}

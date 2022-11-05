@@ -1,0 +1,789 @@
+<!-- <ion-header class="ion-no-border" #header translucent="true"> </ion-header> -->
+
+<ion-content
+  [fullscreen]="true"
+  scrollEvents="true"
+  (ionScroll)="onContentScroll($event)"
+>
+  <div class="main-header">
+    <div>
+      <div
+        class="container"
+        style="height: 220px; padding: 11px 13px 0px; overflow: hidden"
+      >
+        <img
+          [src]="'https://quickchicken.in/api/'+homeBanner"
+          *ngIf="homeBanner"
+        />
+        <ion-skeleton-text
+          animated
+          style="width: 100%"
+          *ngIf="!homeBanner"
+        ></ion-skeleton-text>
+        <!-- <img style="" src="/assets/chicken.jpg" alt="" /> -->
+        <div class="centered">
+          <ion-grid class="ion-no-padding">
+            <ion-row>
+              <ion-col size="2" style="display: flex">
+                <ion-icon
+                  style="
+                    background: white;
+                    color: black;
+                    padding: 10px;
+                    width: 45%;
+                    border-radius: 3px;
+                    height: 19px;
+                  "
+                  (click)="openFirst()"
+                  name="menu-outline"
+                ></ion-icon>
+              </ion-col>
+              <ion-col size="10">
+                <div
+                  class="search-bar"
+                  [routerLink]="['/search']"
+                  routerLinkActive="router-link-active"
+                  style="background: #ffffff; color: black; border-radius: 3px"
+                >
+                  <ion-grid>
+                    <ion-row class="ion-no-margin">
+                      <!-- <ion-col size="2">
+            <ion-icon slot="" name="search-outline"></ion-icon>
+          </ion-col> -->
+                      <ion-col
+                        style="display: flex; align-items: center; height: 30px"
+                        size="10"
+                      >
+                        <h4 style="margin-left: 11px">
+                          Search for any product
+                        </h4>
+                      </ion-col>
+                      <ion-col
+                        size="2"
+                        style="
+                          text-align: center;
+                          justify-content: center;
+                          display: grid;
+                          align-items: center;
+                        "
+                      >
+                        <ion-icon name="search-outline"></ion-icon>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+      <!-- <div class="header">
+        <h1>
+          <b>Find <span>Good Chicken</span>,</b><br />Around You.
+        </h1>
+      </div> -->
+
+      <!-- <div class="banner">
+        <ion-slides [options]="bannerimg">
+          <ion-slide *ngFor="let item of imageData">
+            <div>
+              <img
+                src="https://ramwebdeveloper.in/api/{{item.name}}"
+                alt=""
+                srcset=""
+                style="border-radius: 7px"
+              />
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </div> -->
+
+      <div class="category-icon" *ngIf="category">
+        <ion-grid>
+          <ion-row>
+            <ion-col
+              size="2.4"
+              *ngFor="let item of category"
+              [routerLink]="['/allproduct', item.id]"
+              routerLinkActive="router-link-active"
+            >
+              <div>
+                <img [src]="'https://quickchicken.in/api/'+item.image" />
+              </div>
+              <span style="font-size: 9px">{{item.name}}</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <div *ngIf="!category">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="2.4">
+              <ion-skeleton-text
+                style="height: 60px; border-radius: 3px"
+                animated
+              ></ion-skeleton-text>
+            </ion-col>
+            <ion-col size="2.4">
+              <ion-skeleton-text
+                style="height: 60px; border-radius: 3px"
+                animated
+              ></ion-skeleton-text
+            ></ion-col>
+            <ion-col size="2.4">
+              <ion-skeleton-text
+                style="height: 60px; border-radius: 3px"
+                animated
+              ></ion-skeleton-text
+            ></ion-col>
+            <ion-col size="2.4">
+              <ion-skeleton-text
+                style="height: 60px; border-radius: 3px"
+                animated
+              ></ion-skeleton-text
+            ></ion-col>
+            <ion-col size="2.4">
+              <ion-skeleton-text
+                style="height: 60px; border-radius: 3px"
+                animated
+              ></ion-skeleton-text
+            ></ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <hr style="border-top: 1px solid; margin: 0 10px; background: #990000" />
+
+      <div class="popular-item">
+        <ion-grid id="mleft">
+          <ion-row>
+            <ion-col size="8">
+              <h1 style="font-size: 15px"><b>Today's Top Picks</b></h1>
+              <h4 style="color: #9a0002; font-size: 12px">
+                What are people cooking today!
+              </h4>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-slides
+          mode="md"
+          [options]="productdet"
+          *ngIf="!hidePopularSkeleton"
+        >
+          <!-- <ion-slide>
+            <div class="product">
+              <div>
+                <ion-skeleton-text
+                  animated
+                  style="
+                    width: 100%;
+                    height: 106px;
+                    border-radius: 10px 10px 0 0;
+                  "
+                ></ion-skeleton-text>
+                <ion-skeleton-text
+                  animated
+                  style="width: 47%; height: 31px; margin-top: 12px"
+                ></ion-skeleton-text>
+                <ion-skeleton-text
+                  animated
+                  style="width: 70%"
+                ></ion-skeleton-text>
+                <ion-skeleton-text
+                  animated
+                  style="width: 40%"
+                ></ion-skeleton-text>
+                <ion-grid class="ion-no-padding">
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-skeleton-text
+                        animated
+                        style="width: 80%; height: 33px"
+                      ></ion-skeleton-text>
+                    </ion-col>
+                    <ion-col
+                      size="6"
+                      style="
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-end;
+                      "
+                    >
+                      <ion-skeleton-text
+                        animated
+                        style="width: 80%; height: 33px; border-radius: 71px"
+                      ></ion-skeleton-text>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </div>
+            </div>
+          </ion-slide> -->
+          <!-- <ion-slide>
+            <div class="product">
+              <div>
+                <ion-skeleton-text
+                  animated
+                  style="
+                    width: 100%;
+                    height: 106px;
+                    border-radius: 10px 10px 0 0;
+                  "
+                ></ion-skeleton-text>
+                <ion-skeleton-text
+                  animated
+                  style="width: 47%; height: 31px; margin-top: 12px"
+                ></ion-skeleton-text>
+                <ion-skeleton-text
+                  animated
+                  style="width: 70%"
+                ></ion-skeleton-text>
+                <ion-skeleton-text
+                  animated
+                  style="width: 40%"
+                ></ion-skeleton-text>
+                <ion-grid class="ion-no-padding" sty>
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-skeleton-text
+                        animated
+                        style="width: 80%; height: 33px"
+                      ></ion-skeleton-text>
+                    </ion-col>
+                    <ion-col
+                      size="6"
+                      style="
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-end;
+                      "
+                    >
+                      <ion-skeleton-text
+                        animated
+                        style="width: 80%; height: 33px; border-radius: 71px"
+                      ></ion-skeleton-text>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </div>
+            </div>
+          </ion-slide> -->
+        </ion-slides>
+        <div *ngIf="!popularitem">
+          <div class="top-picks" *ngFor="let _ of [].constructor(3)">
+            <ion-grid>
+              <ion-row
+                style="
+                  background: white;
+                  border-radius: 3px;
+                  padding: 5px 8px 0;
+                  margin: 0 8px 13px;
+                "
+              >
+                <ion-col size="3" style="padding: 0">
+                  <div
+                    style="
+                      height: 74px;
+                      overflow: hidden;
+                      border-radius: 5px;
+                      margin-bottom: 8px;
+                    "
+                  >
+                    <ion-skeleton-text
+                      style="height: 100%; border-radius: 3px"
+                      animated
+                    ></ion-skeleton-text>
+                  </div>
+                </ion-col>
+                <ion-col size="6">
+                  <h3
+                    style="
+                      font-size: 10px;
+                      line-height: initial;
+                      font-weight: 800;
+                    "
+                  >
+                    <ion-skeleton-text
+                      animated
+                      style="width: 100%"
+                    ></ion-skeleton-text>
+                  </h3>
+                  <h4 style="font-size: 8px; line-height: initial">
+                    <ion-skeleton-text
+                      animated
+                      style="width: 100%"
+                    ></ion-skeleton-text>
+                    <ion-skeleton-text
+                      animated
+                      style="width: 60%"
+                    ></ion-skeleton-text>
+                  </h4>
+                </ion-col>
+                <ion-col size="3">
+                  <h4 style="font-weight: 700; font-size: 14px">
+                    <ion-skeleton-text
+                      animated
+                      style="width: 100%"
+                    ></ion-skeleton-text>
+                  </h4>
+
+                  <h3 style="font-size: 9px; line-height: initial">
+                    <ion-skeleton-text
+                      animated
+                      style="width: 100%"
+                    ></ion-skeleton-text>
+                    <ion-skeleton-text
+                      animated
+                      style="width: 60%"
+                    ></ion-skeleton-text>
+                  </h3>
+                  <h3 style="font-size: 9px; line-height: initial">
+                    <ion-skeleton-text
+                      animated
+                      style="width: 100%"
+                    ></ion-skeleton-text>
+                    <ion-skeleton-text
+                      animated
+                      style="width: 60%"
+                    ></ion-skeleton-text>
+                  </h3>
+                </ion-col>
+                <!-- <ion-col size="3" style="">
+                  <ion-skeleton-text
+                    animated
+                    style="width: 100%; height: 30px"
+                  ></ion-skeleton-text
+                ></ion-col> -->
+                <ion-col size="8.5" style="">
+                  <ion-skeleton-text
+                    animated
+                    style="width: 100%; height: 30px"
+                  ></ion-skeleton-text
+                ></ion-col>
+                <ion-col size="3.5">
+                  <ion-skeleton-text
+                    animated
+                    style="width: 100%; height: 30px"
+                  ></ion-skeleton-text
+                ></ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </div>
+        <div class="top-picks">
+          <ion-grid>
+            <ion-row
+              *ngFor="let item of popularitem"
+              style="
+                background: white;
+                border-radius: 3px;
+                padding: 8px;
+                margin: 0 8px 13px;
+              "
+            >
+              <ion-col size="3" style="padding: 0">
+                <div
+                  style="
+                    height: 74px;
+                    overflow: hidden;
+                    border-radius: 5px;
+                    margin-bottom: 8px;
+                  "
+                >
+                  <img
+                    class="image-cover"
+                    [src]="'https://quickchicken.in/api/'+item.image"
+                    alt=""
+                    style="width: 100%; height: 100%"
+                    srcset=""
+                  />
+                </div>
+              </ion-col>
+              <ion-col size="6">
+                <h3
+                  style="
+                    font-size: 10px;
+                    line-height: initial;
+                    font-weight: 800;
+                  "
+                  [routerLink]="['/productdet', item.id]"
+                  routerLinkActive="router-link-active"
+                >
+                  {{item.name}}
+                </h3>
+                <h4 style="font-size: 8px; line-height: initial">
+                  {{ item.description | slice:0:60}}..
+                </h4>
+                <!-- <ion-grid>
+                  <ion-row>
+                    <ion-col size="6" style="font-size: 10px">
+                      view recipe
+                    </ion-col>
+                    <ion-col size="6" style="font-size: 10px">
+                      View Nutrition Value
+                    </ion-col>
+                  </ion-row>
+                </ion-grid> -->
+              </ion-col>
+              <ion-col size="3">
+                <h4 style="font-weight: 700; font-size: 14px">
+                  Rs. {{item.price}}
+                </h4>
+
+                <h3
+                  style="font-size: 9px; line-height: initial"
+                  *ngIf="item.category_id == 1"
+                >
+                  Total Weight : {{item.weight}} Grams
+                </h3>
+                <h3
+                  style="font-size: 9px; line-height: initial"
+                  *ngIf="item.category_id == 2"
+                >
+                  Total Quantity : {{item.pieces}} Pieces
+                </h3>
+              </ion-col>
+              <!-- <ion-col
+                size="3"
+                style="
+                  font-weight: 600;
+                  font-size: 11px;
+                  text-align: center;
+                  background: #ffcc00;
+                  border-radius: 3px;
+                  margin-right: 4px;
+                "
+                >View Recipe</ion-col
+              > -->
+              <ion-col
+                size="8.5"
+                style="
+                  font-weight: 600;
+                  font-size: 11px;
+                  text-align: center;
+                  background: #ffcc00;
+                  border-radius: 3px;
+                  margin-right: 4px;
+                "
+                [routerLink]="['/nutrivalue', item.id]"
+                routerLinkActive="router-link-active"
+                >View Nutrition Value</ion-col
+              >
+              <ion-col
+                size="3.3"
+                style="
+                  font-weight: 600;
+                  font-size: 11px;
+                  text-align: center;
+                  background: #990000;
+                  color: white;
+                  border-radius: 3px;
+                "
+                (click)="addToCart(item.id,item.weight)"
+                *ngIf="item.hide_btn == null"
+              >
+                Add to cart</ion-col
+              >
+              <ion-col
+                size="3"
+                style="
+                  font-weight: 600;
+                  font-size: 11px;
+                  text-align: center;
+                  background: #990000;
+                  color: white;
+                  border-radius: 3px;
+                  display: flex;
+                  justify-content: space-evenly;
+                  align-items: center;
+                "
+                *ngIf="item.hide_btn == true"
+              >
+                <ion-icon name="remove-outline" (click)="dec(item)"></ion-icon>
+                {{item.quantity}}
+                <ion-icon name="add-outline" (click)="inc(item)"></ion-icon
+              ></ion-col>
+              <!-- <ion-col size="3" *ngIf="item.hide_btn == true">
+                <div
+                  class="counter2"
+                  style="
+                    display: flex;
+                    justify-content: space-evenly;
+                    height: 41px;
+                  "
+                >
+                  <ion-icon
+                    name="remove-outline"
+                    (click)="dec(item)"
+                  ></ion-icon>
+                  {{item.quantity}}
+                  <ion-icon name="add-outline" (click)="inc(item)"></ion-icon>
+                </div>
+              </ion-col> -->
+            </ion-row>
+          </ion-grid>
+        </div>
+
+        <!-- <ion-slides mode="md" [options]="productdet">
+          <ion-slide *ngFor="let item of popularitem">
+            <div class="product">
+              <div class="fill">
+                <img
+                  [src]="'https://ramwebdeveloper.in/api/'+item.image"
+                  alt=""
+                  srcset=""
+                  [routerLink]="['productdet', item.id]"
+                  routerLinkActive="router-link-active"
+                />
+                <div class="message">
+                </div>
+
+                <div
+                  class="discription"
+                  [routerLink]="['productdet', item.id]"
+                  routerLinkActive="router-link-active"
+                >
+                  <h2>{{item.name}}</h2>
+                  <h5>{{item.description | slice:0:60}}..</h5>
+                  <h5 *ngIf="item.type == 1">
+                    Pieces :
+                    <span style="font-weight: 700">
+                      {{item.pieces}} Pieces</span
+                    >
+                  </h5>
+                  <h5 *ngIf="item.type == 2">
+                    Net Weight :
+                    <span style="font-weight: 700">{{item.weight}} Gms</span>
+                  </h5>
+                </div>
+                <div class="price">
+                  <ion-grid class="ion-no-padding">
+                    <ion-row>
+                      <ion-col size="6">
+                        <h3>
+                          MRP:
+                          <span style="font-weight: 600; font-size: 23px"
+                            >₹{{item.price}}</span
+                          >
+                        </h3>
+                      </ion-col>
+                      <ion-col size="6" id="left">
+                        <div
+                          class="counter"
+                          style="
+                            display: flex;
+                            justify-content: space-evenly;
+                            height: 41px;
+                            width: 100px;
+                            font-size: 14px;
+                          "
+                          *ngIf="item.hide_btn == true"
+                        >
+                          <ion-icon
+                            name="remove-outline"
+                            (click)="dec(item)"
+                          ></ion-icon>
+                          {{item.quantity}}
+                          <ion-icon
+                            name="add-outline"
+                            (click)="inc(item)"
+                          ></ion-icon>
+                        </div>
+
+                        <button
+                          mat-flat-button
+                          color="primary"
+                          (click)="addToCart(item.id,item.weight)"
+                          *ngIf="item.hide_btn == null"
+                        >
+                          Add
+                        </button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </div>
+            </div>
+          </ion-slide>
+        </ion-slides> -->
+      </div>
+    </div>
+
+    <hr style="border-top: 1px solid; margin: 0 10px; background: #990000" />
+    <div class="popular-item">
+      <ion-grid style="margin-left: 10px">
+        <ion-row>
+          <ion-col size="10">
+            <h1 style="font-size: 15px">
+              <b>Today's Top Recipe</b>
+            </h1>
+            <h4 style="color: #9a0002; font-size: 12px">
+              Recipe from the people for the people!
+            </h4>
+          </ion-col>
+          <!-- <ion-col size="2">
+            <span>view more</span>
+          </ion-col> -->
+        </ion-row>
+      </ion-grid>
+      <ion-grid *ngIf="!desktopRecipe">
+        <ion-row style="padding: 8px">
+          <ion-col
+            size="5.8"
+            *ngFor="let _ of [].constructor(2)"
+            style="border-radius: 3px; background: white; margin: 0px 1px 4px"
+          >
+            <ion-grid class="ion-no-padding">
+              <ion-row>
+                <ion-col size="12">
+                  <div
+                    style="height: 52px; overflow: hidden; border-radius: 3px"
+                  >
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </div>
+                </ion-col>
+                <ion-col size="12">
+                  <h1
+                    style="
+                      font-size: 10px;
+                      font-weight: 700;
+                      line-height: normal;
+                      margin-top: 6px;
+                    "
+                  >
+                    <ion-skeleton-text
+                      style="width: 60%"
+                      animated
+                    ></ion-skeleton-text>
+                  </h1>
+                  <h1
+                    style="
+                      font-size: 8px;
+
+                      line-height: normal;
+                    "
+                  >
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                    <ion-skeleton-text
+                      style="width: 30%"
+                      animated
+                    ></ion-skeleton-text>
+                  </h1>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid>
+        <ion-row style="padding: 8px">
+          <ion-col
+            size="5.8"
+            *ngFor="let item of desktopRecipe"
+            style="border-radius: 3px; background: white; margin: 0px 1px 4px"
+            [routerLink]="['/recipe', item.id]"
+          >
+            <ion-grid class="ion-no-padding">
+              <ion-row>
+                <ion-col size="12">
+                  <div
+                    style="height: 52px; overflow: hidden; border-radius: 3px"
+                  >
+                    <img
+                      [src]="'https://quickchicken.in/api/'+item.image"
+                      alt=""
+                      srcset=""
+                    />
+                  </div>
+                </ion-col>
+                <ion-col size="12">
+                  <h1
+                    style="
+                      font-size: 10px;
+                      font-weight: 700;
+                      line-height: normal;
+                      margin-top: 6px;
+                    "
+                  >
+                    {{item.name | titlecase}}
+                  </h1>
+                  <h1
+                    style="
+                      font-size: 8px;
+
+                      line-height: normal;
+                    "
+                  >
+                    {{item.description | slice:3:50}}..
+                    <span style="color: #990000">view recipe</span>
+                  </h1>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <!-- <div class="category">
+      <div class="header">
+        <h1><b>What Whould You Like To Eat</b></h1>
+        <h3>Choose by Category</h3>
+      </div>
+      <div class="images" *ngIf="!category">
+        <ion-grid style="padding: 12px">
+          <ion-row>
+            <ion-col size="6">
+              <ion-skeleton-text
+                animated
+                style="width: 100%; height: 70px; border-radius: 8px"
+              ></ion-skeleton-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-skeleton-text
+                animated
+                style="width: 100%; height: 70px; border-radius: 8px"
+              ></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <ion-skeleton-text
+                animated
+                style="width: 100%; height: 70px; border-radius: 8px"
+              ></ion-skeleton-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-skeleton-text
+                animated
+                style="width: 100%; height: 70px; border-radius: 8px"
+              ></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <div class="images">
+        <ion-grid style="padding: 12px">
+          <ion-row>
+            <ion-col
+              *ngFor="let item of category"
+              size="6"
+              [routerLink]="['/allproduct', item.id]"
+              routerLinkActive="router-link-active"
+            >
+              <div class="img">
+                <img
+                  [src]="'https://ramwebdeveloper.in/api/'+item.image"
+                  alt=""
+                  srcset=""
+                />
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div> -->
+  </div>
+  <!-- <app-navbar2></app-navbar2> -->
+</ion-content>

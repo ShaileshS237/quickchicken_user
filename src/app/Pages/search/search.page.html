@@ -1,0 +1,94 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <input
+      type="text"
+      placeholder="Search for any product"
+      [(ngModel)]="search"
+      autofocus
+    />
+    <ion-buttons slot="end" (click)="productSearch()">
+      <ion-button id="color" *ngIf="search">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1
+    *ngIf="showNoResult"
+    style="font-size: 14px; text-align: center; margin-top: 12%"
+  >
+    No Result Found
+  </h1>
+  <div *ngIf="searchresult">
+    <div class="result" *ngFor="let item of searchresult">
+      <ion-grid
+        [routerLink]="['/productdet', item.id]"
+        routerLinkActive="router-link-active"
+      >
+        <ion-row>
+          <ion-col size="3">
+            <div style="height: 63px; overflow: hidden">
+              <img
+                [src]="'https://quickchicken.in/api/'+item.image"
+                alt=""
+                srcset=""
+              />
+            </div>
+          </ion-col>
+          <ion-col size="9" class="ion-no-padding">
+            <ion-row>
+              <ion-col size="12">
+                <h1>
+                  {{item.name | titlecase | slice:0:20}}.. <br />
+                  <!-- <span style="font-weight: 400">
+                    {{item.description | slice:0:30}}..</span
+                  >
+                  <br /> -->
+                  Net Weight : {{item.weight}} |
+                  <span style="font-weight: 500"> Price:₹{{item.price}}</span>
+                </h1>
+                <div>
+                  <!-- <button
+                  mat-flat-button
+                  color="primary"
+                  (click)="addToCart(item.id,item.weight)"
+                >
+                  Add <mat-icon>add</mat-icon>
+                </button> -->
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+  <!-- <div class="category" *ngIf="!searchresult">
+    <div class="images">
+      <h1>Explore By Category</h1>
+      <ion-grid style="padding: 12px">
+        <ion-row>
+          <ion-col size="6">
+            <img src="/assets/catimage.png" alt="" srcset="" />
+          </ion-col>
+          <ion-col size="6">
+            <img src="/assets/catimage.png" alt="" srcset="" />
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <img src="/assets/catimage.png" alt="" srcset="" />
+          </ion-col>
+          <ion-col size="6">
+            <img src="/assets/catimage.png" alt="" srcset="" />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div> -->
+</ion-content>

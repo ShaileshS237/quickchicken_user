@@ -1,0 +1,48 @@
+<ion-content>
+  <ion-fab
+    vertical="bottom"
+    horizontal="center"
+    slot="fixed"
+    (click)="goNext()"
+  >
+    <ion-fab-button color="primary">
+      <ion-icon name="arrow-forward-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div class="onboard-main">
+    <div class="onboard-top">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button color="primary" (click)="goBack()">
+            <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
+            <!-- <ion-icon name="cheveron-back" slot="icon-only"></ion-icon> -->
+          </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button (click)="skipBtn()" fill="clear"> Skip </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </div>
+
+    <div class="onboard-bot">
+      <ion-slides pager="true" #mainSlides>
+        <ion-slide *ngFor="let slide of onboardslides">
+          <div class="onb-card">
+            <div class="onb-img">
+              <img src="assets/{{slide.img}}.png" alt="" />
+            </div>
+            <div class="onb-desc ion-text-center">
+              <h4>{{slide.title}}</h4>
+              <p class="ion-no-margin">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Molestiae cupiditate necessitatibus soluta dicta eum dolor
+                perferendis enim non totam sint! Aliquam ex laborum aperiam quis
+                fugit. Dolorum itaque iure vitae architecto similique.
+              </p>
+            </div>
+          </div>
+        </ion-slide>
+      </ion-slides>
+    </div>
+  </div>
+</ion-content>

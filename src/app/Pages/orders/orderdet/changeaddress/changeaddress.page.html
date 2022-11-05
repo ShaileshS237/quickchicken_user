@@ -1,0 +1,54 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="form">
+    <h1>
+      Update <br />
+      Address deatils
+    </h1>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Address</mat-label>
+      <textarea
+        matInput
+        placeholder="Address "
+        [(ngModel)]="address_one"
+        style="text-transform: capitalize"
+      ></textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Nearby landmark*</mat-label>
+      <input
+        matInput
+        [(ngModel)]="address_two"
+        style="text-transform: capitalize"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Pin Code*</mat-label>
+      <input type="number" matInput [(ngModel)]="pincode" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Receiver Name.*</mat-label>
+      <input matInput [(ngModel)]="name" style="text-transform: capitalize" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Mobile No. *</mat-label>
+      <input type="number" matInput [(ngModel)]="mobile" />
+    </mat-form-field>
+    <button
+      mat-flat-button
+      class="button"
+      (click)="presentAlertConfirm()"
+      [disabled]="!address_one || !address_two || !pincode || !name || !mobile "
+    >
+      Save Address
+    </button>
+  </div>
+</ion-content>

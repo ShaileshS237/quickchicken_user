@@ -1,0 +1,57 @@
+.conatiner{
+    // padding: 20px;
+    input{
+        width: 100%;
+        border-radius: 6px;
+        font-size: 16px;
+        padding: 14px;
+        border: 1px solid lightgray;
+        background: #f7f7f7;
+    }
+    button{
+        height: 100%;
+    width: 100%;
+    color: #ffffff;
+    background: #f8aa3a;
+    }
+    button:disabled{
+        height: 100%;
+    width: 100%;
+    color: #ffffff;
+    background: #f1cc98;
+    }
+}
+.errmsg{
+    
+    margin-top: 29px;
+    background: #f8aa3a;
+    color: white;
+    padding: 12px;
+    p{
+        font-size: 15px;
+        margin: 0;
+    }
+}
+
+.successmsg
+{
+    h1{
+        font-size: 18px;
+        margin: 0px 14px 0;
+        color: #f8aa3a;
+        font-weight: 600;
+    }
+    p{
+        font-size: 15px;
+        margin: 0px 14px 0;
+        // color: #f8aa3a;
+        font-weight: 300;
+    }
+}
+
+ion-list{
+    ion-list-header{
+        font-weight: 600;
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,378 @@
+<ion-header class="ion-no-border">
+  <!-- <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-label style="font-size: 20px"> Your Cart </ion-label>
+    </ion-buttons>
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div>
+    <img [src]="'https://quickchicken.in/api/'+homeBanner" alt="" />
+  </div>
+  <div style="text-align: center; margin-top: 100px" *ngIf="showLoading">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <div *ngIf="!showLoading">
+    <!-- <h1
+      style="
+        font-size: 46px;
+        color: #f6a41a;
+        font-weight: 500;
+        margin-bottom: 26px;
+      "
+    >
+      Cart
+    </h1> -->
+
+    <div *ngIf="!cartempty">
+      <h3 style="font-size: 18px; margin-top: 15px; font-weight: 600">
+        My Cart
+      </h3>
+      <mat-card
+        *ngFor="let item of cart ;let i = index"
+        style="box-shadow: none"
+      >
+        <div class="products">
+          <div class="sub-products">
+            <ion-grid class="ion-no-padding">
+              <ion-row>
+                <ion-col size="10">
+                  <span></span>
+                  <h3>{{item.name | titlecase | slice:0:32}}..</h3>
+                </ion-col>
+                <ion-col size="2" style="text-align: end; font-size: 21px">
+                  <ion-icon
+                    name="close-outline"
+                    (click)="deleteItem(item.id)"
+                  ></ion-icon>
+                </ion-col>
+              </ion-row>
+              <ion-row id="second">
+                <ion-col size="3">
+                  <span id="weight"> {{item.weight * item.quantity}} Gms</span>
+                </ion-col>
+                <ion-col
+                  size="5"
+                  style="display: flex; justify-content: center"
+                >
+                  <span id="price">
+                    ₹{{item.price}} x {{item.quantity}} =
+                    {{item.price*item.quantity}}</span
+                  >
+                </ion-col>
+
+                <ion-col size="4" style="text-align: end">
+                  <div
+                    class="counter"
+                    style="display: flex; justify-content: space-evenly"
+                  >
+                    <ion-icon
+                      name="remove-outline"
+                      (click)="dec(item)"
+                    ></ion-icon>
+                    {{item.quantity}}
+                    <ion-icon name="add-outline" (click)="inc(item)"></ion-icon>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </div>
+      </mat-card>
+      <div class="orderinfo">
+        <ion-grid class="ion-no-padding">
+          <ion-row>
+            <ion-col size="12">
+              <h1>Order Summary.</h1>
+            </ion-col>
+            <ion-col size="6" style="color: #990000">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12"> Sub Total. </ion-col>
+                  <!-- <ion-col size="12"> Coupon Discount. </ion-col> -->
+                  <ion-col size="12"> Delivery Charges. </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col size="6">
+              <ion-grid style="text-align: end">
+                <ion-row style="color: #990000">
+                  <ion-col size="12"> ₹ {{cartSum}} </ion-col>
+                  <!-- <ion-col size="12"> updated on next page </ion-col> -->
+                  <ion-col size="12"> Updated on next page </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col size="12">
+              <mat-divider style="background: black"></mat-divider>
+            </ion-col>
+          </ion-row>
+          <ion-row style="margin-top: 8px">
+            <ion-col size="6" style="color: #990000">
+              <h1>Total Amount.</h1>
+            </ion-col>
+            <ion-col style="text-align: end; color: #990000" size="6">
+              <h1>₹ {{cartSum}}</h1>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <div
+        style="
+          background: #990000;
+          color: white;
+          padding: 8px;
+          text-align: center;
+          border-radius: 5px;
+        "
+      >
+        <h3 style="font-size: 12px; font-weight: 600">
+          <span *ngIf="selecteddate">{{selecteddate}} : {{selectedslot}} </span>
+          <span *ngIf="selecteddate" (click)=" cleardelivery()"
+            >(Change Slot)</span
+          >
+          <span *ngIf="!selecteddate">
+            When do you wish to recive it? Select a slot
+          </span>
+        </h3>
+        <ion-grid *ngIf="!selecteddate">
+          <ion-row>
+            <ion-col
+              (click)="selectSlot()"
+              size="7.5"
+              style="
+                background: white;
+                padding: 13px 20px;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <h6 style="color: black; margin: 0px; font-size: 12px">
+                Normal Delivery?
+                <span style="font-weight: 800; color: #990000">
+                  Select Slot
+                </span>
+              </h6>
+            </ion-col>
+            <ion-col size="0.5"> </ion-col>
+            <ion-col
+              (click)="selectquick()"
+              size="4"
+              style="
+                background: white;
+                padding: 13px 20px;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+              "
+            >
+              <img src="assets/newicon/Quick Express.png" alt="" />
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <div
+        style="
+          text-align: center;
+          background: #ffcc00;
+          color: white;
+          padding: 9px;
+          margin-bottom: 10px;
+          border-radius: 4px;
+          font-weight: 600;
+          margin-top: 13px;
+        "
+      >
+        <ion-grid class="ion-no-border" *ngIf="!showAddAddress">
+          <ion-row>
+            <ion-col size="2">
+              <img src="/assets/newicon/deliveryadress.png" alt="" srcset="" />
+            </ion-col>
+            <ion-col size="10" style="padding-left: 12px">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  flex-direction: row;
+
+                  justify-content: space-between;
+                "
+              >
+                <div style="">Delivery Address</div>
+
+                <div
+                  style="
+                    font-size: 13px;
+                    font-weight: 100;
+                    color: white;
+                    background: #fdab08;
+                    border-radius: 5px;
+                  "
+                  (click)="selectaddress()"
+                >
+                  <span style="padding: 9px">Change</span>
+                </div>
+              </div>
+              <ion-modal
+                trigger="trigger-button"
+                [breakpoints]="[0.0, 0.5, 1]"
+                [initialBreakpoint]="0.7"
+                mode="md"
+              >
+                <ng-template>
+                  <ion-header class="ion-no-border">
+                    <ion-toolbar style="text-align: center">
+                      <ion-title>Select Delivery Address</ion-title>
+                    </ion-toolbar>
+                  </ion-header>
+                  <ion-content>
+                    <ion-grid class="ion-padding">
+                      <ion-row *ngFor="let item of addressBook">
+                        <ion-col size="1">
+                          <img
+                            src="assets/newicon/deliveryadress.png"
+                            style="margin-top: 8px"
+                          />
+                        </ion-col>
+                        <ion-col size="11" (click)="changeAddress(item)">
+                          <h3><b> {{item.name | titlecase}}</b></h3>
+                          <p>
+                            {{item.address_one | titlecase}}<br />{{item.address_two
+                            | titlecase}}, {{item.pincode}}
+                            <br />
+                            Mobile No : {{item.mobile}}
+                          </p>
+                          <mat-divider style="margin-top: 15px"></mat-divider>
+                        </ion-col>
+                        <p
+                          style="
+                            color: #990000;
+                            font-weight: 600;
+                            margin-left: 9%;
+                          "
+                          (click)="edit(item)"
+                        >
+                          Edit
+                        </p>
+                      </ion-row>
+                    </ion-grid>
+                    <div style="padding: 5px 20px">
+                      <button
+                        style="
+                          width: 100%;
+                          color: white;
+                          background: #990000;
+                          border-radius: 6px;
+                        "
+                        mat-stroked-button
+                        color="primary"
+                        (click)="add()"
+                      >
+                        Add New Address
+                      </button>
+                    </div>
+                  </ion-content>
+                </ng-template>
+              </ion-modal>
+
+              <div>
+                <p
+                  style="
+                    text-align: left;
+                    font-size: 13px;
+                    margin: 0;
+                    line-height: normal;
+                    margin-top: 4px;
+                    font-weight: 300;
+                  "
+                >
+                  {{PrimaryAddress | titlecase}}
+                </p>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="ion-no-border" *ngIf="showAddAddress">
+          <ion-row>
+            <ion-col size="10" style="padding-left: 12px; display: flex">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  flex-direction: row;
+
+                  justify-content: space-between;
+                "
+              >
+                <div>
+                  <h3
+                    style="
+                      text-align: left;
+                      font-size: 14px;
+                      line-height: normal;
+                    "
+                  >
+                    <b> Add an address to proceed </b><br />
+                    Please add your delivery address
+                  </h3>
+                </div>
+              </div>
+            </ion-col>
+            <ion-col
+              size="2"
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <ion-icon
+                name="add-outline"
+                style="
+                  background: #4f1211;
+                  padding: 8px;
+                  font-size: 18px;
+                  color: white;
+                  border-radius: 42px;
+                "
+                (click)="presentModalAddress()"
+              ></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <div
+        style="
+          background: #990000;
+          color: white;
+          padding: 8px;
+          text-align: center;
+          border-radius: 5px;
+        "
+      >
+        <h3 style="font-size: 12px; font-weight: 600" (click)=" placeOrder()">
+          Proceed Checkout
+        </h3>
+      </div>
+    </div>
+    <div *ngIf="cartempty" style="padding: 152px 76px">
+      <img src="/assets/newimage/Empty Cart.png" alt="" />
+      <!--   <h1
+        style="
+          text-align: center;
+          font-size: 16px;
+          margin-top: 19px;
+          line-height: normal;
+          font-weight: 200;
+        "
+      >
+        Your Cart is Waiting For Your Next Meal
+      </h1> -->
+    </div>
+  </div>
+</ion-content>

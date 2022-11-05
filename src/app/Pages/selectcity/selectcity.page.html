@@ -1,0 +1,66 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Select Delivery Location</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="conatiner">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="8">
+          <input
+            type="text"
+            name=""
+            id=""
+            placeholder="Enter a Pincode"
+            [(ngModel)]="pincode"
+          />
+        </ion-col>
+        <ion-col size="4">
+          <button
+            mat-flat-button
+            color="primary"
+            (click)="checkPin()"
+            [disabled]="!pincode"
+          >
+            <span *ngIf="!loading">Check</span>
+            <ion-spinner name="crescent" *ngIf="loading"></ion-spinner>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="successmsg" *ngIf="avail">
+    <h1>Ahha.. We deliver to this location.</h1>
+    <p>Please select exact location to you.</p>
+  </div>
+
+  <ion-list *ngIf="avail">
+    <ion-item *ngFor="let item of pinCodeData">
+      <ion-icon name="location-outline" slot="start"></ion-icon>
+      <ion-label (click)="selectCity(item.city,item.address)"
+        >{{item.city}} ({{item.address}})</ion-label
+      >
+    </ion-item>
+  </ion-list>
+
+  <div class="errmsg" *ngIf="notavail">
+    <p>
+      Sorry we don't deliver to your location.<br />
+      Please try another pincode or choose from following list.
+    </p>
+  </div>
+
+  <!-- Default List Header -->
+
+  <ion-list *ngIf="notavail">
+    <ion-list-header>
+      <ion-label>Select By City</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let item of cityData">
+      <ion-label (click)="selectCity(item.name,'')">{{item.name}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

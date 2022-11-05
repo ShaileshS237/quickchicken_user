@@ -1,0 +1,319 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab4"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Order Details</ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button> Help </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="hide" style="padding: 50%">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <div *ngIf="!hide">
+    <div
+      style="padding: 10px 20px"
+      *ngIf="allowcancel == 1 && orderStatus == 2"
+    >
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          <!-- <ion-col
+            size="6"
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 12px;
+            "
+            >10.00 Min Left</ion-col
+          > -->
+          <ion-col
+            size="5.9"
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 12px;
+              background: #e0cece;
+              color: #700101;
+              border-radius: 4px;
+
+              padding: 7px;
+            "
+            (click)="changeaddress()"
+          >
+            Change Address</ion-col
+          >
+          <ion-col size="0.2"></ion-col>
+          <ion-col
+            size="5.9"
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 12px;
+              background: #990000;
+              color: rgb(255 255 255);
+              border-radius: 4px;
+
+              padding: 7px;
+            "
+            (click)="cancelorder()"
+          >
+            Cancel order</ion-col
+          >
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div
+      class="address"
+      style="padding: 3px 20px 0px"
+      *ngIf=" this.orderStatus != 6 && this.orderStatus != 7"
+    >
+      <ion-grid class="ion-no-padding">
+        <ion-row *ngFor="let item of ordersdetails">
+          <ion-col size="2" id="center">
+            <img src="assets/newicon/deliveryadress.png" alt="" />
+          </ion-col>
+          <ion-col size="10" style="padding-left: 14px">
+            <h4 style="font-size: 11px">Delivery Location</h4>
+            <h3 style="font-size: 14px; font-weight: 500; line-height: initial">
+              <b>{{item.name | titlecase}}</b><br />
+              {{item.address_one | titlecase}} {{item.address_two | titlecase}},
+              {{item.city|titlecase}} <br />{{item.pincode}}
+            </h3>
+          </ion-col>
+
+          <!-- <ion-col size="12">
+           
+          </ion-col> -->
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div
+      style="
+        margin: 12px 20px;
+        padding: 9px 0;
+        background: #70010129;
+        color: #700101;
+        border-radius: 5px;
+      "
+      *ngIf="allowcancel == 1 && orderStatus == 2"
+    >
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          <ion-col size="12">
+            <h1
+              style="
+                font-size: 12px;
+                line-height: inherit;
+                padding: 0 15px 0;
+                text-align: center;
+              "
+            >
+              Order cancellation allowed only for 10 min from the time of order
+              placed.
+            </h1>
+          </ion-col>
+          <ion-col size="12"> </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="cancelorder" *ngIf=" this.orderStatus == 6">
+      <img src="/assets/newimage/Order Cancelled.png" />
+      <!-- <h1>Your Order has been cancelled</h1>-->
+      <h3>Shipment id: QChicken{{id}}</h3>
+    </div>
+    <div class="cancelorder" *ngIf=" this.orderStatus == 5">
+      <img style="width: 49%" src="/assets/newimage/Order delivered.png" />
+      <!-- <h1>Your Order has been Delivered</h1>
+      <h3>Shipment id: QChicken{{id}}</h3> -->
+    </div>
+    <div></div>
+    <div class="cancelorder" *ngIf=" this.orderStatus == 7">
+      <img
+        src="https://cdn-icons.flaticon.com/png/512/5977/premium/5977489.png?token=exp=1646046906~hmac=ca019bac76cd7e0b0fac43c6bb74f05c"
+      />
+      <h1>Your Order has been Failed</h1>
+      <h3>Shipment id: QChicken{{id}}</h3>
+    </div>
+    <!-- <div class="address">
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          <ion-col size="6"></ion-col>
+          <ion-col size="6"></ion-col>
+        </ion-row>
+      </ion-grid>
+    </div> -->
+
+    <mat-vertical-stepper
+      linear
+      [selectedIndex]="currentStep"
+      *ngIf=" this.orderStatus != 6 && this.orderStatus != 7 && this.orderStatus != 5"
+      style="margin: 0 20px; border-radius: 5px"
+    >
+      <ng-template matStepperIcon="edit">
+        <mat-icon>done</mat-icon>
+      </ng-template>
+
+      <mat-step label="Order is placed" [completed]="level1">
+        <p>Order is confirmed with Order id : QChicken{{id}} <br /></p>
+      </mat-step>
+      <mat-step label="Shipment is processing" [completed]="level2">
+        <p>Your Bill is Generated</p>
+      </mat-step>
+      <mat-step label="Shiment is out for delivery" [completed]="level3">
+        <p>Delivery Executive is delivering your order</p>
+        <ion-grid fixed style="background: #ede7e7; border-radius: 5px">
+          <ion-row *ngFor="let item of ordersdetails">
+            <ion-col size="10">
+              <h5 style="font-size: 16px; font-weight: 600">
+                {{item.delivery_agent_name}}
+              </h5>
+              <h5>Mobile Number : {{item.delivery_agent_mobile}}</h5>
+            </ion-col>
+            <ion-col size="2" (click)="call(item.delivery_agent_mobile)">
+              <img src="/assets/Group 83.png" alt="" />
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </mat-step>
+      <mat-step label="Shipment is delivered" [completed]="level4">
+        <p>Your Order QChicken{{id}} is delivered</p>
+      </mat-step>
+    </mat-vertical-stepper>
+
+    <div class="orderdetails">
+      <h4>
+        Order Details -
+        <span *ngIf="ordertype==2">COD</span>
+        <span *ngIf="ordertype!=2">Paid Online</span>
+      </h4>
+      <div class="divider"></div>
+      <ion-grid
+        class="ion-no-padding"
+        *ngFor="let item of productdetails"
+        style="margin-bottom: 9px"
+      >
+        <ion-row>
+          <ion-col size="12">
+            <h3>{{item.name | titlecase}}</h3>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">Weight : {{item.weight}}gms </ion-col>
+          <ion-col size="6" style="text-align: end"
+            >₹ {{item.price}} x 1</ion-col
+          >
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="orderinfo" *ngFor="let item of ordersdetails">
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          <ion-col size="12">
+            <h1>Bill Details.</h1>
+          </ion-col>
+          <ion-col size="6">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="12"> Sub Total. </ion-col>
+                <ion-col size="12"> Delivery Charges. </ion-col>
+                <ion-col size="12" style="color: green"> Discount. </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+          <ion-col size="6">
+            <ion-grid style="text-align: end">
+              <ion-row>
+                <ion-col size="12"> ₹ {{item.sub_total}} </ion-col>
+                <ion-col size="12"> ₹ {{item.delivery_charges}}</ion-col>
+                <ion-col size="12" style="color: green">
+                  - ₹ {{item.discount_value}}
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+          <ion-col size="12">
+            <mat-divider></mat-divider>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 8px">
+          <ion-col size="8">
+            <h1>Total Amount Paid.</h1>
+          </ion-col>
+          <ion-col style="text-align: end" size="4">
+            <h1>₹ {{item.total}}</h1>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div
+      class="download"
+      *ngIf=" this.orderStatus != 6 && this.orderStatus != 7"
+    >
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          <ion-col size="2" id="center">
+            <img src="assets/newicon/Invoice.png" alt="" />
+          </ion-col>
+          <ion-col size="8" id="center">
+            <h3>Invoice</h3>
+            <h4>Download the invoice</h4>
+          </ion-col>
+          <ion-col size="2" id="center" (click)="download()">
+            <img src="https://cdn-icons-png.flaticon.com/512/54/54993.png" />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div
+      class="download"
+      *ngIf=" this.orderStatus == 6 || this.orderStatus == 7"
+    >
+      <ion-grid class="ion-no-padding" (click)="retry()">
+        <ion-row>
+          <ion-col size="10" id="center">
+            <h4>Failed Order?</h4>
+            <h3>Don't Worry, Retry Now</h3>
+          </ion-col>
+          <ion-col size="2" id="center">
+            <img src="https://cdn-icons-png.flaticon.com/512/141/141988.png" />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer
+  *ngIf="show"
+  class="ion-no-border"
+  style="background: #990000; color: white"
+>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="8" style="padding-left: 20px">
+        <h1 style="font-size: 14px">Cart is not empty to retry</h1></ion-col
+      >
+      <ion-col size="4">
+        <button
+          mat-button
+          flat
+          style="background: white; color: #4f1211; width: 100%"
+          [routerLink]="['/tabs/tab3']"
+          routerLinkActive="router-link-active"
+        >
+          Go To Cart
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

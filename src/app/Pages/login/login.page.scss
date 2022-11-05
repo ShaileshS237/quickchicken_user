@@ -1,0 +1,112 @@
+ion-content {
+  --background: none;
+}
+
+.background {
+  height: 100%;
+  background-image: url("/assets/image.png") !important;
+  background-repeat: no-repeat;
+  object-fit: cover;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 84%;
+}
+
+.padding {
+  padding: 0 31px;
+  #main-btn {
+    width: 100%;
+    background: #f6a41a;
+    /* color: antiquewhite; */
+    height: 55px;
+    font-size: 19px;
+    color: white;
+  }
+
+  #social-btn {
+    // width: 100%;
+    background: white;
+    /* color: antiquewhite; */
+    height: 55px;
+    font-size: 19px;
+    border: 1px solid #4f1211;
+    color: #4f1211;
+    margin-top: 10px;
+  }
+
+  .mat-divider {
+    margin: 19px 0;
+    // color: white;
+    border-top-color: #5d2524;
+  }
+  h3 {
+    margin-top: 10px;
+    color: white;
+    text-align: center;
+  }
+  #span {
+    font-weight: 500;
+    text-decoration: underline;
+  }
+}
+
+.bottom {
+  margin: 13px 0px;
+  span {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
+  h5 {
+    text-align: center;
+    margin: 0;
+    color: #990000;
+  }
+}
+
+.form {
+  padding: 37px 29px;
+  height: 100%;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+ion-content {
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+ion-content {
+  --background: url(/assets/image3.png) no-repeat center center / cover;
+}
+
+.content {
+  color: white;
+  // position: absolute;
+  bottom: 0;
+  padding: 30px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}

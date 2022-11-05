@@ -1,0 +1,57 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar style="text-align: center">
+    <ion-title>Select Delivery Address</ion-title>
+    <ion-buttons slot="end" (click)="dismissmodal()">
+      <ion-button id="color">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div style="text-align: center; margin-top: 10%" *ngIf="!addressBook">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <div *ngIf="addressBook">
+    <ion-grid class="ion-padding">
+      <ion-row *ngFor="let item of addressBook">
+        <ion-col size="1">
+          <img
+            src="assets/newicon/deliveryadress.png"
+            style="margin-top: 8px"
+          />
+        </ion-col>
+        <ion-col size="11" (click)="changeAddress(item)">
+          <h3><b> {{item.name | titlecase}}</b></h3>
+          <p>
+            {{item.address_one | titlecase}}<br />{{item.address_two |
+            titlecase}}, {{item.pincode}}
+            <br />
+            Mobile No : {{item.mobile}}
+          </p>
+          <mat-divider style="margin-top: 15px"></mat-divider>
+        </ion-col>
+        <p
+          style="color: #990000; font-weight: 600; margin-left: 9%"
+          (click)="edit(item)"
+        >
+          Edit
+        </p>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border" style="background: whitesmoke">
+  <div style="padding: 5px 20px">
+    <button
+      style="width: 100%; color: white; background: #990000; border-radius: 6px"
+      mat-stroked-button
+      color="primary"
+      (click)="add()"
+    >
+      Add New Address
+    </button>
+  </div>
+</ion-footer>

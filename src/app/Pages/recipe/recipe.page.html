@@ -1,0 +1,53 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!recipeName" style="text-align: center; margin-top: 15%">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <div *ngIf="recipeName">
+    <div style="padding: 0 20px" *ngIf="recipeName">
+      <img
+        style="
+          width: 400px;
+          height: 161px;
+          object-fit: cover;
+          border-radius: 5px;
+        "
+        [src]="'https://quickchicken.in/api/'+recipeImg"
+        alt=""
+        srcset=""
+      />
+    </div>
+    <div>
+      <h1
+        style="
+          margin: 0;
+          padding: 8px 20px 0px;
+          font-weight: 700;
+          color: #990000;
+        "
+      >
+        {{recipeName}}
+      </h1>
+      <h3 style="margin: 0; padding: 0px 20px 10px">
+        Upload By : {{uploadby}}
+      </h3>
+      <div
+        style="
+          background: white;
+          padding: 20px 20px 20px;
+          margin: 0px 20px 20px;
+          border-radius: 5px;
+        "
+        [innerHtml]="recipeDescription"
+      ></div>
+      <!-- <p>{{recipeDescription}}</p> -->
+    </div>
+  </div>
+</ion-content>

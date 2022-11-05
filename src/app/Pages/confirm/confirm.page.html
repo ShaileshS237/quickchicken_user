@@ -1,0 +1,58 @@
+<!-- <ion-header class="ion-no-border">
+  <ion-toolbar style="--background: #4f1211; color: white">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <div style="background: #990000; padding: 0px 36px 81px; margin: 12px">
+    <!-- <div class="success-animation">
+      <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
+      </div> -->
+    <!-- <ng-lottie [options]="options" height="300px"></ng-lottie> -->
+    <!-- <img
+      style="padding: 45px 70px 0px"
+      src="assets/newicon/Design.png"
+      alt=""
+    /> -->
+    <img
+      style="padding: 43% 30px 30px"
+      src="assets/newicon/Quick Order Confirmation.png"
+      alt=""
+    />
+    <div style="text-align: center; color: white">
+      <h1 style="font-size: 18px; font-weight: 500; margin-bottom: 17px">
+        Your Order Confirmed
+      </h1>
+      <p style="color: white; margin-top: 31px">
+        Sit back and Relax.<br />
+        Good things take time.
+      </p>
+      <p style="margin-top: 31px; font-size: 10px">
+        Do not hit back. we shall redirect you to home in
+      </p>
+      <p *ngIf="showtext" style="font-size: 10px">{{i}} Sec. <br /></p>
+
+      <!-- <button
+        mat-stroked-button
+        style="background: white; color: #4f1211; margin-top: 68px"
+        [routerLink]="['/orders']"
+        routerLinkActive="router-link-active"
+      >
+        Track Your Orders
+      </button> -->
+    </div>
+  </div>
+
+  <div style="text-align: center; padding: 50px">
+    <p style="color: #000000">
+      We have sent your order details & invoice on your registered email id.
+    </p>
+
+    <p style="color: #000000; font-weight: 600">
+      Need Help? Call +91-8087489038
+    </p>
+  </div>
+</ion-content>

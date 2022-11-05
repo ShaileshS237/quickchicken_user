@@ -1,0 +1,180 @@
+<!-- <ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <!-- <div>
+    <app-searchbar></app-searchbar>
+  </div> -->
+  <img src="/assets/Group 45.png" alt="" srcset="" style="margin-top: 41px" />
+
+  <div *ngIf="userid == 1">
+    <div style="margin-top: 26px; text-align: center">
+      <h1 style="font-weight: 600; font-size: 30px">Hi, Chicken Lover</h1>
+      <h3
+        style="
+          margin-top: 8px;
+          font-size: 11px;
+          font-weight: 400;
+          padding: 0 40px;
+          line-height: 1.2;
+        "
+      >
+        Welcome to Quickchicken, Manage your orders, addresses, Rewards & other
+        details.
+      </h3>
+      <button
+        style="width: 67%; margin-top: 16px; background: #990000"
+        mat-flat-button
+        color="primary"
+        [routerLink]="['/login']"
+        routerLinkActive="router-link-active"
+      >
+        Login Now!
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="userid != 1">
+    <div
+      *ngIf="!userDetails"
+      style="
+        padding: 26px 20px 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      "
+    >
+      <ion-skeleton-text
+        animated
+        style="width: 57%; height: 32px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 43%; height: 28px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 57%; height: 18px"
+      ></ion-skeleton-text>
+    </div>
+    <div
+      *ngFor="let item of userDetails"
+      style="margin-top: 26px; text-align: center"
+    >
+      <h1 style="font-weight: 600; font-size: 30px" *ngIf="item.name==null">
+        Hii, There 🙋
+      </h1>
+      <h1 style="font-weight: 600; font-size: 30px" *ngIf="item.name!=null">
+        Hi<br />{{item.name|titlecase}}
+      </h1>
+      <h3 style="margin-top: 20px; font-size: 14px; font-weight: 600">
+        +91 {{item.mobile}}
+      </h3>
+      <h3
+        *ngIf="item.email==null"
+        style="color: #4f1211; text-decoration: underline"
+        [routerLink]="['editprofile',userid]"
+        routerLinkActive="router-link-active"
+      >
+        <i>update your email id</i>
+      </h3>
+      <h3 *ngIf="item.name!=null" style="font-size: 14px; font-weight: 600">
+        {{item.email}}
+      </h3>
+    </div>
+    <ion-list lines="none">
+      <ion-item>
+        <ion-label>My Orders</ion-label>
+        <img
+          src="assets/Icons SVG/Back Button.svg"
+          alt=""
+          [routerLink]="['/tabs/tab4']"
+          routerLinkActive="router-link-active"
+          style="
+            background: #ffcc00;
+            color: #700101;
+            padding: 7px;
+            border-radius: 5px;
+            width: 15%;
+            transform: rotate(180deg);
+          "
+        />
+        <!-- <ion-icon
+          name="arrow-forward-outline"
+          [routerLink]="['/tabs/tab4']"
+          routerLinkActive="router-link-active"
+        ></ion-icon> -->
+      </ion-item>
+      <ion-item>
+        <ion-label>My Address Book</ion-label>
+        <img
+          src="assets/Icons SVG/Back Button.svg"
+          alt=""
+          style="
+            background: #ffcc00;
+            color: #700101;
+            padding: 7px;
+            border-radius: 5px;
+            width: 15%;
+            transform: rotate(180deg);
+          "
+          [routerLink]="['/address']"
+          routerLinkActive="router-link-active"
+        />
+        <!-- <ion-icon
+          name="arrow-forward-outline"
+          [routerLink]="['/address']"
+          routerLinkActive="router-link-active"
+        ></ion-icon> -->
+      </ion-item>
+    </ion-list>
+    <ion-list lines="none">
+      <ion-item>
+        <ion-label>Edit Profile</ion-label>
+        <img
+          [routerLink]="['editprofile', userid]"
+          routerLinkActive="router-link-active"
+          src="assets/Icons SVG/Edit Pencil.svg"
+          alt=""
+          style="
+            background: #ffcc00;
+            color: #700101;
+            padding: 7px;
+            border-radius: 5px;
+            width: 15%;
+          "
+          routerLinkActive="router-link-active"
+        />
+      </ion-item>
+      <ion-item>
+        <ion-label>Logout</ion-label>
+        <img
+          (click)="logout()"
+          src="assets/svg/Logout.svg"
+          alt=""
+          style="
+            background: #ffcc00;
+            color: #700101;
+            padding: 7px;
+            border-radius: 5px;
+            width: 15%;
+          "
+          routerLinkActive="router-link-active"
+        />
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+
+<!-- <ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-title style="text-align: center; color: #c5b1b0"
+      >Version 1.0.0</ion-title
+    >
+  </ion-toolbar>
+</ion-footer> -->

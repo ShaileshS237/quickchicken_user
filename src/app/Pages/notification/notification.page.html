@@ -1,0 +1,71 @@
+<ion-header class="ion-no-border" *ngIf="userid != 1">
+  <ion-toolbar>
+    <!-- <ion-back-button defaultHref="/"></ion-back-button> -->
+    <h3 style="font-size: 16px; text-align: center; margin: 0">
+      Notifications
+    </h3>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="userid == 1">
+    <div style="margin-top: 26px; text-align: center">
+      <h1 style="font-weight: 600; font-size: 30px">Hi, Chicken Lover</h1>
+      <h3
+        style="
+          margin-top: 8px;
+          font-size: 11px;
+          font-weight: 400;
+          padding: 0 40px;
+          line-height: 1.2;
+        "
+      >
+        Welcome to Quickchicken, Manage your orders, addresses, Rewards & other
+        details.
+      </h3>
+      <button
+        style="width: 67%; margin-top: 16px; background: #990000"
+        mat-flat-button
+        color="primary"
+        [routerLink]="['/login']"
+        routerLinkActive="router-link-active"
+      >
+        Login Now!
+      </button>
+    </div>
+  </div>
+
+  <div style="padding: 0 10px" *ngIf="userid != 1">
+    <!-- <h3 style="margin: 13px 13px 0; font-size: 17px; font-weight: 600">
+      Notifications
+    </h3> -->
+    <div style="text-align: center; margin-top: 18%" *ngIf="!allnotification">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+    <div class="notification" *ngIf="allnotification">
+      <ion-grid>
+        <ion-row *ngFor="let item of allnotification">
+          <ion-col size="1.5" style="display: flex; align-items: center">
+            <img src="assets/icon.png" alt="" srcset="" />
+          </ion-col>
+          <ion-col size="6">
+            <span style="font-size: 12px; font-weight: 700; color: #990000"
+              >{{item.title | titlecase}}</span
+            >
+            <br />
+            <span style="font-size: 10px; font-weight: 500"
+              >{{item.description | titlecase}}</span
+            >
+            <br />
+            <span style="font-size: 10px; font-weight: 500"
+              >{{item.added_on | date :'dd'}}</span
+            >
+            <span style="font-size: 10px; font-weight: 500">
+              {{item.added_on | date :'MMM'}}</span
+            >
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

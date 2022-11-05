@@ -1,0 +1,41 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="text-align: center; margin-top: 100px" *ngIf="showloading">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <div class="form" *ngIf="!showloading">
+    <h1>Update Profile</h1>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Profile Name*</mat-label>
+      <input matInput [(ngModel)]="name" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Mobile No.</mat-label>
+      <input matInput [(ngModel)]="mobile" type="number" disabled />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Email ID</mat-label>
+      <input matInput [(ngModel)]="email" type="email" />
+    </mat-form-field>
+  </div>
+</ion-content>
+
+<ion-footer style="background: whitesmoke" class="ion-no-border">
+  <ion-toolbar style="--background: white">
+    <button
+      mat-flat-button
+      [disabled]="!name || !mobile|| !email "
+      (click)="update()"
+    >
+      Update
+    </button>
+  </ion-toolbar>
+</ion-footer>

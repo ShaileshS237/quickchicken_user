@@ -1,0 +1,310 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-back-button defaultHref="/"></ion-back-button> -->
+    <h3 style="font-size: 16px; text-align: center">Order History</h3>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div>
+    <app-searchbar></app-searchbar>
+  </div> -->
+  <!-- <h1
+    style="
+      font-size: 46px;
+      color: #f6a41a;
+      font-weight: 500;
+      padding: 0 13px;
+      margin: 22px 0;
+    "
+  >
+    Orders
+  </h1> -->
+
+  <div *ngIf="hide">
+    <div
+      class="custom-skeleton"
+      style="
+        border: 1px solid lightgrey;
+        margin: 15px;
+
+        padding: 7px 12px;
+        border-radius: 10px;
+      "
+    >
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 38px; border-radius: 4px; margin: 8px 0px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 38px; border-radius: 4px; margin: 8px 0px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          <ion-col size="6">
+            <ion-skeleton-text
+              animated
+              style="
+                width: 90%;
+                height: 38px;
+                border-radius: 4px;
+                margin: 8px 0px;
+              "
+            ></ion-skeleton-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-skeleton-text
+              animated
+              style="
+                width: 100%;
+                height: 38px;
+                border-radius: 4px;
+                margin: 8px 0px;
+              "
+            ></ion-skeleton-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div
+      class="custom-skeleton"
+      style="
+        border: 1px solid lightgrey;
+        margin: 15px;
+        padding: 7px 12px;
+        border-radius: 10px;
+      "
+    >
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 38px; border-radius: 4px; margin: 8px 0px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 38px; border-radius: 4px; margin: 8px 0px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          <ion-col size="6">
+            <ion-skeleton-text
+              animated
+              style="
+                width: 90%;
+                height: 38px;
+                border-radius: 4px;
+                margin: 8px 0px;
+              "
+            ></ion-skeleton-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-skeleton-text
+              animated
+              style="
+                width: 100%;
+                height: 38px;
+                border-radius: 4px;
+                margin: 8px 0px;
+              "
+            ></ion-skeleton-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div
+      class="custom-skeleton"
+      style="
+        border: 1px solid lightgrey;
+        margin: 15px;
+        padding: 7px 12px;
+        border-radius: 10px;
+      "
+    >
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 38px; border-radius: 4px; margin: 8px 0px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 38px; border-radius: 4px; margin: 8px 0px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          <ion-col size="6">
+            <ion-skeleton-text
+              animated
+              style="
+                width: 90%;
+                height: 38px;
+                border-radius: 4px;
+                margin: 8px 0px;
+              "
+            ></ion-skeleton-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-skeleton-text
+              animated
+              style="
+                width: 100%;
+                height: 38px;
+                border-radius: 4px;
+                margin: 8px 0px;
+              "
+            ></ion-skeleton-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+  <div *ngIf="showNoOrders">
+    <h3 style="text-align: center; margin: 50% 0; color: #4f1211">
+      No Orders Found
+    </h3>
+  </div>
+  <div *ngIf="!showNoOrders">
+    <div
+      class=""
+      style="
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+        padding: 6px;
+        margin: 13px;
+        background: white;
+      "
+      *ngFor="let item of orderdetails"
+    >
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" style="text-align: center">
+            <div
+              style="
+                background: #ede7e7;
+                padding: 9px;
+                color: #4f1211;
+
+                border-radius: 4px;
+              "
+            >
+              Slot : {{item.order_date | date}}, {{item.timeslot}}
+            </div>
+          </ion-col>
+          <ion-col size="12" style="text-align: center">
+            <div
+              style="
+                background: #ffc40c;
+                color: white;
+                padding: 9px;
+                border-radius: 4px;
+              "
+              *ngIf="item.status == 2"
+            >
+              <span> Pending </span>
+            </div>
+            <div
+              style="
+                background: #ffa301;
+                color: white;
+                padding: 9px;
+                border-radius: 4px;
+              "
+              *ngIf="item.status == 3"
+            >
+              <span> Accepted - Processing </span>
+            </div>
+            <div
+              style="
+                background: #00a029;
+                color: white;
+                padding: 9px;
+                border-radius: 4px;
+              "
+              *ngIf="item.status == 4"
+            >
+              <span> Out for Delivery </span>
+            </div>
+            <div
+              style="
+                background: #005800;
+                color: white;
+                padding: 9px;
+                border-radius: 4px;
+              "
+              *ngIf="item.status == 5"
+            >
+              <span> Delivered </span>
+            </div>
+            <div
+              style="
+                background: #c00000;
+                color: white;
+                padding: 9px;
+                border-radius: 4px;
+              "
+              *ngIf="item.status == 6"
+            >
+              <span> Cancelled </span>
+            </div>
+            <div
+              style="
+                background: #8c000a;
+                color: white;
+                padding: 9px;
+                border-radius: 4px;
+              "
+              *ngIf="item.status == 7"
+            >
+              <span>Failed </span>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <h3 style="color: #c00000" *ngIf="item.cancel_reason !=null">
+              Cancel Reason : {{item.cancel_reason}}
+            </h3>
+            <h3>Order Id : QChicken{{item.id}}</h3>
+            <h3>
+              Order Placed on : {{item.added_on | date:
+              'mediumDate'}},{{item.added_on | date: 'shortTime'}}
+            </h3>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <button
+              mat-flat-button
+              style="width: 100%; background-color: #990000"
+              color="primary"
+              [routerLink]="['/orders/orderdet', item.id]"
+              routerLinkActive="router-link-active"
+            >
+              View Details
+            </button>
+          </ion-col>
+          <ion-col size="6">
+            <button
+              mat-flat-button
+              style="width: 100%; background-color: #990000"
+              color="primary"
+              (click)="reorders(item.id)"
+            >
+              Repeat Order
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

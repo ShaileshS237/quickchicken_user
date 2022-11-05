@@ -1,0 +1,42 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h3 {
+  margin-left: 10px;
+}
+.date {
+  background: #f8b24b;
+  display: flex;
+  align-items: center;
+  padding: 4px 10px;
+  color: white;
+}
+
+#center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+// ion-row {
+//   margin-bottom: 15px;
+// }
+ion-slides {
+  margin: 10px 0;
+}
+
+ion-slide {
+  background: #4f1211;
+  padding: 7px;
+  margin: 10px 0;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+}

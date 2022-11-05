@@ -1,0 +1,33 @@
+<ion-content style="--background:#4F1211">
+  <div class="background">
+   <div style="padding:58% 0 23% ">
+    <img src="/assets/logo.png" alt="" srcset="" class="center">
+   </div>
+   <div class="padding">
+    <button mat-flat-button id="main-btn">Sign up with Mobile</button>
+    <ion-grid class="ion-no-padding">
+      <ion-row >
+        <ion-col size="3">
+          <mat-divider></mat-divider>
+        </ion-col>
+        <ion-col size="6" style="display: flex;justify-content: center;
+        align-items: center;">
+          <span style="color: white;">or use social sign up</span>
+        </ion-col>
+        <ion-col size="3">
+          <mat-divider></mat-divider>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <button mat-flat-button id="social-btn">
+      <img src="/assets/icon/google logo.png" alt="" srcset="">
+      Continue With Google</button>
+    <button style="margin-top: 10px;" mat-flat-button id="social-btn">
+      <img src="/assets/facebook logo.png" alt="" srcset="">
+      Continue With Facebook</button>
+  
+      <h3>Already have account? <span id="span" [routerLink]="['/login']" routerLinkActive="router-link-active" >Log In</span></h3>
+   </div>
+  </div>
+  </ion-content>
+  

@@ -1,0 +1,95 @@
+<ion-content id="login">
+  <div class="content">
+    <div style="padding: 39% 0 23%">
+      <img
+        src="/assets/while_logo.png"
+        style="width: 84%"
+        alt=""
+        srcset=""
+        class="center"
+      />
+    </div>
+    <!-- <img src="/assets/photo-1566576721346-d4a3b4eaeb55.jpg" alt="" /> -->
+  </div>
+</ion-content>
+<ion-footer class="ion-no-border" style="background: white">
+  <div class="padding" style="background: white">
+    <ion-grid class="ion-no-padding">
+      <ion-row style="margin-top: 9px">
+        <ion-col size="3">
+          <mat-divider></mat-divider>
+        </ion-col>
+        <ion-col
+          size="6"
+          style="display: flex; justify-content: center; align-items: center"
+        >
+          <span style="color: #5d2524">Log in or Sign up</span>
+        </ion-col>
+        <ion-col size="3">
+          <mat-divider></mat-divider>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <button
+      mat-flat-button
+      id="main-btn"
+      [routerLink]="['/loginmain']"
+      routerLinkActive="router-link-active"
+      style="background: #990000"
+    >
+      Log In or Sign up with Mobile
+    </button>
+    <!-- <ion-grid class="ion-no-padding">
+      <ion-row style="margin-top: 9px">
+        <ion-col size="3">
+          <mat-divider></mat-divider>
+        </ion-col>
+        <ion-col
+          size="6"
+          style="display: flex; justify-content: center; align-items: center"
+        >
+          <span style="color: #5d2524">or use social sign up</span>
+        </ion-col>
+        <ion-col size="3">
+          <mat-divider></mat-divider>
+        </ion-col>
+      </ion-row>
+    </ion-grid> -->
+    <!-- <button mat-flat-button id="social-btn" (click)="loginWithGoogle()">
+      <img src="/assets/icon/google logo.png" alt="" srcset="" />
+      Continue With Google
+    </button> -->
+    <!-- <button style="margin-top: 10px" mat-flat-button id="social-btn">
+      <img src="/assets/facebook logo.png" alt="" srcset="" />
+      Continue With Facebook
+    </button> -->
+
+    <div class="bottom">
+      <h5>By Continuing, you agree to our</h5>
+      <h5>
+        <span [routerLink]="['/tnc']" routerLinkActive="router-link-active">
+          Terms of Services </span
+        >&nbsp;&nbsp;<span
+          [routerLink]="['/privacy']"
+          routerLinkActive="router-link-active"
+        >
+          Privacy Policy </span
+        >&nbsp;&nbsp;<span
+          [routerLink]="['/refund']"
+          routerLinkActive="router-link-active"
+        >
+          Refund Policy</span
+        >
+      </h5>
+    </div>
+    <!-- <h3>
+      Already have account?
+      <span
+        id="span"
+        [routerLink]="['/register']"
+        routerLinkActive="router-link-active"
+        >Register</span
+      >
+    </h3> -->
+  </div>
+</ion-footer>

@@ -1,0 +1,232 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu
+      contentId="main-content"
+      menuId="first"
+      (ionWillOpen)="menuOpened2()"
+    >
+      <ion-content>
+        <!--  style="
+          --background: linear-gradient(
+            180deg,
+            rgb(80 17 16) 0%,
+            rgb(44 2 1) 100%
+          );
+        " -->
+
+        <ion-list id="inbox-list">
+          <!-- Default List Header -->
+          <ion-list-header>
+            <ion-label style="font-weight: 700; font-size: 21px"
+              >Main Menu</ion-label
+            >
+            <img
+              src="/assets/favicon.png"
+              alt=""
+              class="center"
+              style="width: 33%; margin: 0"
+            />
+          </ion-list-header>
+          <hr style="border-top: 1px solid; background: black" />
+          <ion-item (click)="routerMenu('Home')">
+            <!-- [md]="p.icon + '-outline'" -->
+            <img
+              style="max-width: 18%"
+              src="assets/Icons SVG/Home Screen/Home.svg"
+              alt=""
+            />
+            <!-- <ion-icona slot="start"  ></ion-icona> -->
+            <div class="vl"></div>
+
+            <ion-label>Home</ion-label>
+          </ion-item>
+          <ion-item (click)="toggleSubMenu()">
+            <!-- [md]="p.icon + '-outline'" -->
+            <img
+              style="max-width: 18%"
+              src="assets/Icons SVG/Home Screen/Profile.svg"
+              alt=""
+            />
+
+            <div class="vl"></div>
+
+            <ion-label>My Account</ion-label>
+            <img
+              [ngStyle]="{
+                transform: showSubmenu ? 'rotate(180deg)' : ' rotate(270deg)'
+              }"
+              style="max-width: 11%"
+              src="assets/Icons SVG/Back Button.svg"
+              alt=""
+            />
+          </ion-item>
+          <ion-list
+            lines="none"
+            style="margin: 0 9px; padding-left: 17px"
+            *ngIf="showSubmenu"
+          >
+            <!-- Default List Header -->
+
+            <ion-item (click)="routerMenu('My Profile')">
+              <!-- [md]="p.icon + '-outline'" -->
+              <img
+                style="max-width: 18%"
+                src="assets/Icons SVG/Home Screen/Profile.svg"
+                alt=""
+              />
+              <!-- <ion-icona slot="start"  ></ion-icona> -->
+              <div class="vl"></div>
+              <ion-label>My Profile</ion-label>
+            </ion-item>
+            <div class="hl"></div>
+
+            <ion-item (click)="routerMenu('My Orders')">
+              <!-- [md]="p.icon + '-outline'" -->
+              <img
+                style="max-width: 18%"
+                src="assets/Icons SVG/Home Screen/Orders.svg"
+                alt=""
+              />
+              <!-- <ion-icona slot="start"  ></ion-icona> -->
+              <div class="vl"></div>
+
+              <ion-label>My Orders</ion-label>
+            </ion-item>
+            <div class="hl"></div>
+
+            <ion-item (click)="routerMenu('My Addresses')">
+              <!-- [md]="p.icon + '-outline'" -->
+              <img
+                style="max-width: 18%"
+                src="assets/Icons SVG/Home Screen/Address.svg"
+                alt=""
+              />
+              <!-- <ion-icona slot="start"  ></ion-icona> -->
+              <div class="vl"></div>
+
+              <ion-label>My Addresses</ion-label>
+            </ion-item>
+            <div class="hl"></div>
+
+            <ion-item (click)="routerMenu('Notifications')">
+              <!-- [md]="p.icon + '-outline'" -->
+              <img
+                style="max-width: 18%"
+                src="assets/Icons SVG/Home Screen/Notification.svg"
+                alt=""
+              />
+              <!-- <ion-icona slot="start"  ></ion-icona> -->
+              <div class="vl"></div>
+
+              <ion-label>Notifications</ion-label>
+            </ion-item>
+          </ion-list>
+          <!-- <ion-item (click)="routerMenu('Contact Us')">
+            <img
+              style="max-width: 18%"
+              src="assets/Icons SVG/Home Screen/Contact Us.svg"
+              alt=""
+            />
+            <div class="vl"></div>
+
+            <ion-label>Contact Us</ion-label>
+          </ion-item> -->
+          <ion-item
+            (click)="routerMenu('Terms & Conditions')"
+            *ngIf="terms != 0"
+          >
+            <img
+              style="max-width: 18%"
+              src="assets/Icons SVG/Home Screen/Terms _ Consditions.svg"
+              alt=""
+            />
+            <div class="vl"></div>
+            <!-- <ion-icona slot="start"  ></ion-icona> -->
+            <ion-label>Terms & Conditions</ion-label>
+          </ion-item>
+          <ion-item *ngIf="faq != 0" (click)="routerMenu('FAQ')">
+            <!-- [md]="p.icon + '-outline'" -->
+            <img
+              style="max-width: 18%"
+              src="assets/Icons SVG/Home Screen/FAQ.svg"
+              alt=""
+            />
+            <div class="vl"></div>
+
+            <!-- <ion-icona slot="start"  ></ion-icona> -->
+            <ion-label>FAQ's</ion-label>
+          </ion-item>
+          <ion-item (click)="routerMenu('Privacy Policy')" *ngIf="privacy != 0">
+            <!-- [md]="p.icon + '-outline'" -->
+            <img
+              style="max-width: 18%"
+              src="assets/Icons SVG/Home Screen/Privacy Policy.svg"
+              alt=""
+            />
+            <div class="vl"></div>
+
+            <!-- <ion-icona slot="start"  ></ion-icona> -->
+            <ion-label>Privacy Policy</ion-label>
+          </ion-item>
+          <ion-item (click)="routerMenu('Refund Policy')" *ngIf="refund != 0">
+            <!-- [md]="p.icon + '-outline'" -->
+            <img
+              style="max-width: 18%"
+              src="assets/Icons SVG/Home Screen/Refund Policy.svg"
+              alt=""
+            />
+            <div class="vl"></div>
+
+            <!-- <ion-icona slot="start"  ></ion-icona> -->
+            <ion-label>Refund Policy</ion-label>
+          </ion-item>
+          <ion-item (click)="routerMenu('Refer App')">
+            <!-- [md]="p.icon + '-outline'" -->
+            <img
+              style="max-width: 18%"
+              src="assets/Icons SVG/Home Screen/Refer App.svg"
+              alt=""
+            />
+            <div class="vl"></div>
+
+            <!-- <ion-icona slot="start"  ></ion-icona> -->
+            <ion-label>Refer App</ion-label>
+          </ion-item>
+          <ion-item (click)="routerMenu('Support')" *ngIf="support != 0">
+            <!-- [md]="p.icon + '-outline'" -->
+            <img
+              style="max-width: 18%"
+              src="assets/svg/Support Icon.svg"
+              alt=""
+            />
+            <div class="vl"></div>
+
+            <!-- <ion-icona slot="start"  ></ion-icona> -->
+            <ion-label>Support</ion-label>
+          </ion-item>
+          <ion-item (click)="routerMenu('Logout')">
+            <!-- [md]="p.icon + '-outline'" -->
+            <img style="max-width: 18%" src="assets/svg/Logout.svg" alt="" />
+            <div class="vl"></div>
+
+            <!-- <ion-icona slot="start"  ></ion-icona> -->
+            <ion-label>Logout</ion-label>
+          </ion-item>
+        </ion-list>
+
+        <h4 style="text-align: center; margin-top: 25%; font-weight: 700">
+          Version 1.0.0 <br />
+          Made in India
+        </h4>
+        <!-- <h3 (click)="navigate()" style="text-align: center">Logout</h3> -->
+        <img
+          src="/assets/while_logo.png"
+          alt=""
+          class="center"
+          style="width: 47%; margin-bottom: 45px"
+        />
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

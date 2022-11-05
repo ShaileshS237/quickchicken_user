@@ -1,0 +1,47 @@
+<ion-tabs (userdet)="getDetails($event)">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tab1">
+      <img src="assets/Icons SVG/Home Screen/Home.svg" alt="" />
+      <!-- <ion-icon name="triangle"></ion-icon> -->
+      <!-- <ion-label>Tab 1</ion-label> -->
+    </ion-tab-button>
+    <ion-tab-button tab="tab2" disabled="{{tabb}}">
+      <img src="assets/Icons SVG/Home Screen/Profile.svg" alt="" />
+      <!-- <ion-label>Tab 2</ion-label> -->
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3" disabled="{{tabb}}">
+      <div style="display: flex; position: absolute">
+        <img
+          src="assets/Icons SVG/Home Screen/Cart.svg"
+          class="max-width: 69%;"
+          style=""
+          alt=""
+        />
+        <ion-badge
+          style="
+            position: absolute;
+            top: -1px;
+            left: 31px;
+            background: rgb(153, 0, 0);
+            border-radius: 24px;
+            font-weight: 400;
+          "
+          slot="end"
+          >{{cartcount}}</ion-badge
+        >
+      </div>
+
+      <!-- <ion-label>Tab 3</ion-label> -->
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab4" disabled="{{tabb}}">
+      <img src="assets/Icons SVG/Home Screen/Orders.svg" alt="" />
+      <!-- <ion-label>Tab 4</ion-label> -->
+    </ion-tab-button>
+    <ion-tab-button tab="tab5" disabled="{{tabb}}">
+      <img src="assets/Icons SVG/Home Screen/Notification.svg" alt="" />
+      <!-- <ion-label>Tab 5</ion-label> -->
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

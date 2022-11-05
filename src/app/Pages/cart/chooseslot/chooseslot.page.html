@@ -1,0 +1,192 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end" (click)="dismissmodal()">
+      <ion-button id="color">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-title>Select Delivery Slot</ion-title>
+  <!-- 
+  <div style="margin-top: 21px">
+    <ion-grid>
+      <ion-row>
+        <ion-col
+          size="3"
+          style="display: flex; align-items: center; padding: 12px"
+        >
+          <img src="assets/newicon/Quick Express.png" alt="" />
+        </ion-col>
+        <ion-col size="9">
+          <div
+            style="
+              background: #990000;
+              color: white;
+              padding: 3px;
+              text-align: center;
+              border-radius: 5px;
+            "
+          >
+            <h3
+              *ngIf="showExpress"
+              style="font-size: 10px; font-weight: 600"
+              (click)="confirmSlot('60 Minutes','today')"
+            >
+              The Quick Express Delivery - 60 Min Fast Delivery
+            </h3>
+            <h3 *ngIf="!showExpress" style="font-size: 10px; font-weight: 600">
+              Express Delivery not available right now.
+            </h3>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <h6
+          style="
+            margin-left: 9px;
+            font-weight: 500;
+            font-size: 11px;
+            margin-top: 10px;
+          "
+        >
+          Fast mode of delivery for your immediate cravings
+        </h6>
+        <div
+          style="
+            width: 100%;
+            height: 1px;
+            background: black;
+            margin: 13px 7px 0;
+          "
+        ></div>
+      </ion-row>
+    </ion-grid>
+  </div> -->
+
+  <ion-grid>
+    <!-- <ion-row>
+      <ion-col size="12" style="text-align: left"> Other Slots </ion-col>
+    </ion-row> -->
+    <ion-row>
+      <ion-col size="6" style="text-align: center">
+        <ion-row>
+          <ion-col
+            style="
+              background: #990000;
+              color: white;
+              border-radius: 3px;
+              margin-bottom: 10px;
+              padding: 8px;
+            "
+          >
+            Today's Slots
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12" *ngIf="todayslotlength == 0">
+            No Slot availble for today
+          </ion-col>
+          <ion-col
+            *ngFor="let item of todayslot ; let i = index"
+            size="12"
+            style="
+              background: #b3b3b3;
+              color: white;
+              border-radius: 3px;
+              margin-bottom: 10px;
+              padding: 8px;
+            "
+            (click)="confirmSlot(item,'Today')"
+          >
+            {{item.start_time}} - {{item.end_time}}
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="6" style="text-align: center">
+        <ion-row>
+          <ion-col
+            style="
+              background: #990000;
+              color: white;
+              border-radius: 3px;
+              margin-bottom: 10px;
+              padding: 8px;
+            "
+          >
+            Tommarow's Slots
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col
+            *ngFor="let item of tomslot"
+            size="12"
+            style="
+              background: #b3b3b3;
+              color: white;
+              border-radius: 3px;
+              margin-bottom: 10px;
+              padding: 8px;
+            "
+            (click)="confirmSlot(item,'Tommarow')"
+          >
+            {{item.start_time}} - {{item.end_time}}
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- <div style="padding: 16px">
+  
+    <div *ngIf="!showExpress">
+      <div style="padding: 19px 0; text-align: center">
+        Express Delivery Not Available Right Now.
+      </div>
+    </div>
+    <div
+      style="display: flex; align-items: center; padding: 8px 10px"
+      class="date"
+    >
+      <h3>Today <b> {{todaydate}} </b></h3>
+    </div>
+    <div>
+      <h4
+        *ngIf="todayslotlength ==0 "
+        style="text-align: center; margin-top: 11px"
+      >
+        No Slots Available
+      </h4>
+      <ion-slides [options]="time">
+        <ion-slide
+          *ngFor="let item of todayslot"
+          (click)="confirmSlot(item,'Today')"
+        >
+          <h3 style="font-size: 11px; margin: 0">
+            {{item.start_time}} - {{item.end_time}}
+          </h3>
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <div
+      style="display: flex; align-items: center; padding: 8px 10px"
+      class="date"
+    >
+      <h3>Tommarow <b> {{tomdate}} </b></h3>
+    </div>
+    <div>
+      <ion-slides [options]="time">
+        <ion-slide
+          *ngFor="let item of tomslot"
+          (click)="confirmSlot(item,'Tommarow')"
+        >
+          <h3 style="font-size: 11px; margin: 0">
+            {{item.start_time}} - {{item.end_time}}
+          </h3>
+        </ion-slide>
+      </ion-slides>
+    </div>
+  </div> -->
+</ion-content>

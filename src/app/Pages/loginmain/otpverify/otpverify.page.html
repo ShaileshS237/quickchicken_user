@@ -1,0 +1,68 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <img src="assets/newicon/otp verification illustration.png" alt="" />
+    <!-- <h1>OTP Verification</h1> -->
+
+    <ng-pass-otp
+      (onInputChange)="onOtpChange($event)"
+      [config]="config"
+      style="text-align: center"
+    ></ng-pass-otp>
+    <h4 style="margin-top: 17px">
+      Please enter the 6 Digit OTP recived on your <br />
+      Mobile No. (+91-{{mobile}})<br />
+    </h4>
+    <h4 style="margin-top: 17px">
+      Incorrect Number?
+      <span style="color: #990000; font-weight: 700" (click)="changeNumber()">
+        Change here</span
+      >
+    </h4>
+    <!-- <input type="number" name="" id="" placeholder="Eg. 95XXXXXX41" [(ngModel)]="top"> -->
+    <div class="button">
+      <button
+        [disabled]="click"
+        mat-flat-button
+        style="color: white; background: #990000"
+        (click)="verifyOtp()"
+      >
+        <span *ngIf="!click">Quick Verify</span
+        ><ion-spinner name="crescent" *ngIf="click"></ion-spinner>
+      </button>
+      <ion-grid *ngIf="showResend" class="ion-no-padding">
+        <ion-row>
+          <ion-col size="12">
+            <h2 style="text-align: center; font-size: 13px">
+              Didn't receive the code?
+              <span
+                (click)="resend()"
+                style="font-size: 13px; font-weight: 700; color: #990000"
+              >
+                Resend Now</span
+              >
+            </h2>
+          </ion-col>
+          <!-- <ion-col size="6">
+            <h2
+              style="
+                text-align: end;
+                font-size: 13px;
+                color: #f6a41a;
+                text-decoration: underline;
+              "
+            
+            ></h2
+          ></ion-col> -->
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

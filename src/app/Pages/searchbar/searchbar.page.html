@@ -1,0 +1,60 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>searchbar</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<div class="container" style="padding: 11px 13px 0px; overflow: hidden">
+  <div class="centered">
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="2" style="display: flex">
+          <ion-icon
+            style="
+              background: white;
+              color: black;
+              padding: 10px;
+              width: 45%;
+              border-radius: 3px;
+              height: 19px;
+            "
+            (click)="openFirst()"
+            name="menu-outline"
+          ></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          <div
+            class="search-bar"
+            [routerLink]="['search']"
+            routerLinkActive="router-link-active"
+            style="background: #ffffff; color: black; border-radius: 3px"
+          >
+            <ion-grid>
+              <ion-row class="ion-no-margin">
+                <ion-col
+                  style="display: flex; align-items: center; height: 30px"
+                  size="10"
+                >
+                  <h4 style="margin-left: 11px; margin-bottom: 0">
+                    Search for any product
+                  </h4>
+                </ion-col>
+                <ion-col
+                  size="2"
+                  style="
+                    text-align: center;
+                    justify-content: center;
+                    display: grid;
+                    align-items: center;
+                  "
+                >
+                  <ion-icon name="search-outline"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</div>

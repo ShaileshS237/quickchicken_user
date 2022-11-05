@@ -1,0 +1,42 @@
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+
+.form {
+  ion-grid {
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+  padding: 25px;
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+ion-footer {
+  padding: 9px 25px;
+}
+button {
+  height: 42px;
+  width: 100%;
+  background: #4f1211;
+  color: rgb(255, 255, 255);
+}
+
+.heading {
+  background: #4f121136;
+  /* color: white; */
+  padding: 9px 20px;
+  color: #4f1211;
+}
+
+.title {
+  color: #f7a42c;
+}

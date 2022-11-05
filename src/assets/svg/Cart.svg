@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="210mm" height="297mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 21000 29700"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#700101;stroke-width:264.67;stroke-linejoin:round;stroke-miterlimit:10}
+    .str1 {stroke:#700101;stroke-width:264.67;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10}
+    .str2 {stroke:white;stroke-width:264.67;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10}
+    .fil3 {fill:none}
+    .fil0 {fill:none;fill-rule:nonzero}
+    .fil1 {fill:#FAA61A;fill-rule:nonzero}
+    .fil2 {fill:#FDAB08;fill-rule:nonzero}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2210398047440">
+   <path class="fil0 str0" d="M36706.07 25342.49c0,203.01 -164.29,367.53 -367.41,367.53 -202.95,0 -367.36,-164.52 -367.36,-367.53 0,-202.95 164.41,-367.54 367.36,-367.54 203.12,0 367.41,164.59 367.41,367.54z"/>
+   <path class="fil0 str0" d="M38168.83 25342.42c0,202.9 -164.29,367.53 -367.41,367.53 -202.95,0 -367.24,-164.63 -367.24,-367.53 0,-203.06 164.29,-367.52 367.24,-367.52 203.12,0 367.41,164.46 367.41,367.52z"/>
+   <polyline class="fil0 str1" points="34665.3,21656.41 35420.04,21656.41 35969.92,24176.37 35714.25,24547.23 38559.27,24547.23 "/>
+   <polygon class="fil1" points="38605.14,23664.63 35931.71,23882.09 35535.11,21873.81 38605.14,21873.81 "/>
+   <polygon class="fil2 str0" points="38605.14,23664.63 35931.71,23882.09 35535.11,21873.81 38605.14,21873.81 "/>
+   <line class="fil0 str2" x1="36219.21" y1="22415.76" x2="38003.06" y2= "22415.76" />
+  </g>
+  <rect class="fil3" x="33286.26" y="20334.24" width="6697.89" height="6697.89"/>
+ </g>
+</svg>
