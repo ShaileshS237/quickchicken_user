@@ -151,9 +151,9 @@ export class AppComponent {
   //   //console.log('yes');
   // }
   showSubmenu: any = false;
-  menuOpened2() {
+  async menuOpened2() {
     this.showSubmenu = false;
-    this.getUserId();
+    await this.getUserId();
   }
 
   navigate() {

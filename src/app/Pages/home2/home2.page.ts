@@ -26,8 +26,9 @@ export class Home2Page implements OnInit {
   bannerimg = {
     initialSlide: 0,
     speed: 400,
-    slidesPerView: 1.3,
-    spaceBetween: 15,
+    autoplay: {
+      delay: 2000,
+    },
   };
   productdet = {
     initialSlide: 0,
@@ -42,6 +43,7 @@ export class Home2Page implements OnInit {
   location: any;
   city: any;
   area: any = null;
+  showPopular: boolean = true;
   popularitem: any = [];
   category: any;
   quantity: any = 0;
@@ -56,6 +58,8 @@ export class Home2Page implements OnInit {
   i: number = 0;
   fcartPrice: any;
   fcartCount: any;
+  gavranItem: any;
+  eggItem: any;
   constructor(
     private activatedRoute: ActivatedRoute,
     public element: ElementRef,
@@ -77,6 +81,7 @@ export class Home2Page implements OnInit {
       this.getCartCount();
       this.getUserId();
     });
+
     this.getHomeBanner();
     this.getCategory();
   }
@@ -93,6 +98,7 @@ export class Home2Page implements OnInit {
   async ionViewWillEnter() {
     await this.storage.getItem('userid').then((val) => {
       this.userid = val;
+      this.getGavran();
       //console.log(this.userid);
     });
 
@@ -109,8 +115,82 @@ export class Home2Page implements OnInit {
       //console.log(this.userid);
       this.getPopular();
       this.getRecipe();
-      this.getCartCount();
+      this.getCategoryWise();
+      // this.getCartCount();
     });
+  }
+
+  getCategoryWise() {
+    this.getGavran();
+    this.getEgg();
+  }
+
+  eggCartItem: any;
+
+  getEgg() {
+    this.apiService
+      .post('productListCatWise', {
+        category_id: '5',
+        user_id: this.userid,
+      })
+      .subscribe(async (val: any) => {
+        let resData: any = val;
+        this.eggItem = val.result;
+        this.eggCartItem = val.cart_result;
+
+        if (resData.code == 200) {
+          this.eggCartItem = val.cart_result;
+          await this.eggItem.forEach((element) => {
+            element.quantity = null;
+            element.hide_btn = null;
+            element.cart_id = null;
+            this.eggCartItem.forEach((element2) => {
+              if (element.id == element2.product_id) {
+                //  //console.log('yes', element.id);
+                element.quantity = element2.quantity;
+                element.hide_btn = true;
+                element.cart_id = element2.cart_id;
+              }
+            });
+          });
+        } else if (resData.code == 301) {
+          // this.shownodata = true;
+        }
+      });
+  }
+
+  gavranCartItem: any;
+
+  getGavran() {
+    this.apiService
+      .post('productListCatWise', {
+        category_id: '6',
+        user_id: this.userid,
+      })
+      .subscribe(async (val: any) => {
+        let resData: any = val;
+        this.gavranItem = val.result;
+        this.gavranCartItem = val.cart_result;
+
+        if (resData.code == 200) {
+          this.gavranCartItem = val.cart_result;
+          await this.gavranItem.forEach((element) => {
+            element.quantity = null;
+            element.hide_btn = null;
+            element.cart_id = null;
+            this.gavranCartItem.forEach((element2) => {
+              if (element.id == element2.product_id) {
+                //  //console.log('yes', element.id);
+                element.quantity = element2.quantity;
+                element.hide_btn = true;
+                element.cart_id = element2.cart_id;
+              }
+            });
+          });
+        } else if (resData.code == 301) {
+          // this.shownodata = true;
+        }
+      });
   }
 
   getPopular() {
@@ -169,6 +249,8 @@ export class Home2Page implements OnInit {
             this.getCartCount();
             this.native.dismiss();
             // //console.log('yes');
+            this.getEgg();
+            this.getGavran();
             this.getPopular();
             // this.native.presentToast('Cart Updated');
           }
@@ -187,7 +269,8 @@ export class Home2Page implements OnInit {
       })
       .subscribe((val) => {
         this.getCartCount();
-
+        this.getEgg();
+        this.getGavran();
         this.getPopular();
       });
   }
@@ -199,7 +282,10 @@ export class Home2Page implements OnInit {
         .post('removeCartItem', { cart_id: item.cart_id })
         .subscribe((val) => {
           this.getCartCount();
+          this.getEgg();
+          this.getGavran();
           this.getPopular();
+          ////console.log(val);
         });
     } else {
       this.apiService
@@ -210,6 +296,8 @@ export class Home2Page implements OnInit {
         .subscribe((val) => {
           this.getCartCount();
 
+          this.getEgg();
+          this.getGavran();
           this.getPopular();
           ////console.log(val);
         });
@@ -246,4 +334,4 @@ export class Home2Page implements OnInit {
       });
   }
 }
-``
+``;

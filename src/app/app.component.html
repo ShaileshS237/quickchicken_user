@@ -204,7 +204,7 @@
             <!-- <ion-icona slot="start"  ></ion-icona> -->
             <ion-label>Support</ion-label>
           </ion-item>
-          <ion-item (click)="routerMenu('Logout')">
+          <ion-item (click)="routerMenu('Logout')" *ngIf="userid != 1">
             <!-- [md]="p.icon + '-outline'" -->
             <img style="max-width: 18%" src="assets/svg/Logout.svg" alt="" />
             <div class="vl"></div>
